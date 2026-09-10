@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Throne & Liberty — Horaires des Boss, Calendrier & Outil Discord</title>
+  <meta name="description" content="Calendrier interactif des boss Throne and Liberty avec conversion automatique à votre fuseau horaire, compte à rebours en temps réel, filtres PvE/PvP et outil d'export Discord.">
+  
+  <!-- Polices Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 pour icônes MMO -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Fond animé & effets d'ambiance -->
+  <div class="bg-stars"></div>
+  <div class="bg-gradient-glow"></div>
+
+  <!-- Header Principal -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-logo-badge">
+          <i class="fa-solid fa-dragon"></i>
+        </div>
+        <div class="brand-text">
+          <h1>THRONE AND LIBERTY</h1>
+          <span class="brand-subtitle"><i class="fa-solid fa-hourglass-half"></i> Boss Watch, Timers & Événements</span>
+        </div>
+      </div>
+
+      <!-- Horloge Locale Unique -->
+      <div class="header-clocks">
+        <div class="clock-chip" title="Heure Locale (Serveur Europe / France)">
+          <span class="clock-label"><i class="fa-solid fa-clock"></i> Heure Locale</span>
+          <strong id="header-local-clock">--:--:--</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenu Principal -->
+  <main class="main-container">
+    
+    <!-- Hero Widget : Prochain Boss Imminent & Cycle Jour/Nuit -->
+    <section class="live-hero-section">
+      <div id="cal-next-boss-widget" class="next-boss-banner">
+        <div class="boss-banner-glow"></div>
+        <div class="next-boss-loading">
+          <i class="fa-solid fa-circle-notch fa-spin"></i> Initialisation des timers en cours...
+        </div>
+      </div>
+
+      <!-- Badge Cycle Jour / Nuit en temps réel -->
+      <div id="cal-live-phase" class="day-night-card">
+        <div class="phase-icon-circle"><i class="fa-solid fa-sun"></i></div>
+        <div class="phase-info">
+          <span class="phase-lbl">CYCLE DU MONDE</span>
+          <strong class="phase-title">Jour</strong>
+          <span class="phase-sub">Calcul du cycle...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barre d'outils du Calendrier : Date, Recherche, Vues & Filtres -->
+    <section class="calendar-toolbar-card">
+      <div class="toolbar-top-row">
+        
+        <!-- Navigation par date (visible en Vue Jour) -->
+        <div id="day-nav-group" class="date-navigation-group">
+          <button id="btn-cal-prev" class="nav-btn" title="Jour précédent"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="btn-cal-today" class="nav-btn-pill active">Aujourd'hui</button>
+          <button id="btn-cal-tomorrow" class="nav-btn-pill">Demain</button>
+          <button id="btn-cal-next" class="nav-btn" title="Jour suivant"><i class="fa-solid fa-chevron-right"></i></button>
+          
+          <div class="date-input-wrap">
+            <i class="fa-solid fa-calendar-days"></i>
+            <input type="date" id="cal-date-picker" class="custom-date-field">
+          </div>
+        </div>
+
+        <!-- Navigation par Quinzaine (visible en Vue 2 Semaines) -->
+        <div id="quinzaine-nav-group" class="quinzaine-nav-group" style="display: none;">
+          <button id="btn-quinzaine-current" class="quinzaine-btn active" data-quinzaine="current">
+            <i class="fa-solid fa-arrows-rotate"></i> Quinzaine Actuelle (A)
+          </button>
+          <button id="btn-quinzaine-next" class="quinzaine-btn" data-quinzaine="next">
+            <i class="fa-solid fa-forward-step"></i> Quinzaine Suivante (B • Inversion 19h ⇄ 22h)
+          </button>
+        </div>
+
+        <!-- Sélecteur de Mode d'Affichage (Vue Jour vs Vue 2 Semaines Minimisée) -->
+        <div class="calendar-view-switcher">
+          <button id="btn-view-day" class="view-switch-btn active" data-view="day" title="Afficher la chronologie détaillée du jour">
+            <i class="fa-solid fa-calendar-day"></i> Vue Jour
+          </button>
+          <button id="btn-view-2weeks" class="view-switch-btn" data-view="2weeks" title="Afficher le planning synthétique minimisé sur 2 semaines">
+            <i class="fa-solid fa-table-cells"></i> Vue 2 Semaines (Minimisée)
+          </button>
+        </div>
+
+        <!-- Recherche rapide de boss -->
+        <div class="search-group">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="boss-search-input" placeholder="Rechercher un boss (ex: Adentus, Tevent, Bellandir)..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="toolbar-bottom-row">
+        <!-- Titre du jour et Cycle T4 -->
+        <div class="day-indicator">
+          <h2 id="cal-day-label">Jeudi 10 Septembre 2026</h2>
+        </div>
+
+        <!-- Filtres thématiques & Options -->
+        <div class="filter-pills-list">
+          <button class="filter-pill active" data-filter="all"><i class="fa-solid fa-border-all"></i> Tous les spawns</button>
+          <button class="filter-pill" data-filter="pve"><i class="fa-solid fa-shield-halved"></i> Boss PvE (Peace)</button>
+          <button class="filter-pill" data-filter="pvp"><i class="fa-solid fa-swords"></i> Boss & Zones PvP</button>
+          <button class="filter-pill" data-filter="arch"><i class="fa-solid fa-crown"></i> Archbosses</button>
+          <button class="filter-pill" data-filter="world"><i class="fa-solid fa-water"></i> Baleine Céleste (Gigantrite)</button>
+          <button id="btn-toggle-hide-past" class="filter-pill toggle-past-pill" title="Masquer les événements passés de la journée">
+            <i class="fa-solid fa-eye-slash"></i> <span id="label-hide-past">Masquer passés</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ligne de filtre par Événement / Boss Spécifique ("Voir QUE tel event") -->
+      <div class="specific-boss-row">
+        <div class="specific-boss-title">
+          <i class="fa-solid fa-filter"></i> <span>Voir un boss / event précis :</span>
+        </div>
+        <div class="specific-boss-chips">
+          <button class="boss-chip-pill active" data-boss-filter="all">Tous</button>
+          <button class="boss-chip-pill chip-arch" data-boss-filter="giant_cordy_asc">
+            <i class="fa-solid fa-crown"></i> Cordy
+          </button>
+          <button class="boss-chip-pill chip-arch" data-boss-filter="tevent_asc">
+            <i class="fa-solid fa-crown"></i> Tevent
+          </button>
+          <button class="boss-chip-pill chip-arch" data-boss-filter="ramux">
+            <i class="fa-solid fa-crown"></i> Ramux
+          </button>
+          <button class="boss-chip-pill chip-arch" data-boss-filter="deluzhnoa_asc">
+            <i class="fa-solid fa-crown"></i> Deluzhnoa
+          </button>
+          <button class="boss-chip-pill chip-arch" data-boss-filter="queen_bellandir_asc">
+            <i class="fa-solid fa-crown"></i> Bellandir
+          </button>
+          <button class="boss-chip-pill chip-event" data-boss-filter="siege_tax">
+            <i class="fa-solid fa-shield-halved"></i> Siège & Taxe
+          </button>
+          <button class="boss-chip-pill chip-whale" data-boss-filter="gigantrite">
+            <i class="fa-solid fa-water"></i> Baleine
+          </button>
+
+          <div class="boss-dropdown-wrapper">
+            <select id="select-specific-boss" class="boss-select-dropdown" title="Choisir n'importe quel boss régulier T4">
+              <option value="">Autre boss T4...</option>
+              <option value="adentus_asc">Adentus</option>
+              <option value="ahzreil_asc">Ahzreil</option>
+              <option value="aridus_asc">Aridus</option>
+              <option value="chernobog_asc">Chernobog</option>
+              <option value="cornelius_asc">Cornelius</option>
+              <option value="daigon_asc">Daigon</option>
+              <option value="excavator9_asc">Excavator-9</option>
+              <option value="grand_aelon_asc">Grand Aelon</option>
+              <option value="junobote_asc">Junobote</option>
+              <option value="kowazan_asc">Kowazan</option>
+              <option value="leviathan_asc">Leviathan</option>
+              <option value="malakar_asc">Malakar</option>
+              <option value="manticus_asc">Manticus</option>
+              <option value="minezerok_asc">Minezerok</option>
+              <option value="morokai_asc">Morokai</option>
+              <option value="nirma_asc">Nirma</option>
+              <option value="pakilo_naru_asc">Pakilo Naru</option>
+              <option value="porfos">Porfos</option>
+              <option value="talus_asc">Talus</option>
+              <option value="thuban">Thuban</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grille Chronologique des Boss (Vue Jour ou Vue 2 Semaines) -->
+    <section class="calendar-timeline-section">
+      <div class="timeline-header-info">
+        <span id="timeline-header-title"><i class="fa-solid fa-list-check"></i> Créneaux prévus pour cette journée</span>
+        
+        <div class="timeline-header-actions">
+          <label id="toggle-regular-in-2w-wrap" class="toggle-regular-label" style="display: none;">
+            <input type="checkbox" id="chk-include-regular-2w">
+            <span>Inclure aussi les boss réguliers (13h, 16h...)</span>
+          </label>
+          <span class="timeline-legend">
+            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #38ef7d;"></i> PvE (Peace)</span>
+            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #ef4444;"></i> PvP / Conflit</span>
+            <span class="legend-item"><i class="fa-solid fa-crown" style="color: #f59e0b;"></i> Archboss</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Vue Jour : Timeline classique -->
+      <div id="cal-timeline-container" class="timeline-container">
+        <!-- Dynamiquement généré par boss-calendar.js -->
+      </div>
+
+      <!-- Vue 2 Semaines Minimisée : Grille compacte des 14 jours -->
+      <div id="cal-2weeks-container" class="two-weeks-container" style="display: none;">
+        <!-- Dynamiquement généré par boss-calendar.js -->
+      </div>
+    </section>
+
+    <!-- Panneau Complet d'Automatisation Discord & Webhook (Repliable / Masqué par défaut) -->
+    <section class="discord-suite-section">
+      <!-- Bouton d'ouverture avec logo Discord et petit plus stylé -->
+      <div class="discord-trigger-wrap">
+        <button id="btn-toggle-discord" class="discord-toggle-btn" title="Afficher ou masquer l'outil d'annonces Discord">
+          <div class="discord-toggle-icon-wrap">
+            <i class="fa-brands fa-discord"></i>
+            <span class="discord-plus-bubble"><i class="fa-solid fa-plus" id="discord-plus-icon"></i></span>
+          </div>
+          <span class="discord-toggle-label">Outil Discord & Annonces Webhook</span>
+          <span class="discord-toggle-hint">Cliquer pour ouvrir</span>
+        </button>
+      </div>
+
+      <!-- Contenu du panneau Discord replié par défaut -->
+      <div id="discord-panel-card" class="discord-panel-card" style="display: none;">
+        <div class="discord-head">
+          <div class="discord-badge-title">
+            <div class="discord-logo-box"><i class="fa-brands fa-discord"></i></div>
+            <div>
+              <h3>Générateur & Automatisation Discord</h3>
+              <p>Publiez des annonces et Embeds 3D avec décomptes temps réel <code>&lt;t:TIMESTAMP:R&gt;</code> directement sur votre serveur Discord.</p>
+            </div>
+          </div>
+
+          <div class="discord-actions-head">
+            <div class="mention-selector">
+              <label for="discord-mention-select">Notification :</label>
+              <select id="discord-mention-select" class="discord-select">
+                <option value="none">Sans mention</option>
+                <option value="everyone">@everyone</option>
+                <option value="here">@here</option>
+                <option value="boss">Rôle @BossAlerts</option>
+              </select>
+            </div>
+
+            <button id="btn-copy-discord" class="btn-discord-copy" title="Copier le message texte pour Discord">
+              <i class="fa-solid fa-copy"></i> Copier le Texte
+            </button>
+          </div>
+        </div>
+
+        <!-- Configuration Salon Discord Archbosses -->
+        <div class="discord-dual-channels-wrap">
+          
+          <div class="discord-channel-card channel-archboss" style="width: 100%;">
+            <div class="channel-card-head">
+              <span class="channel-badge gold"><i class="fa-solid fa-crown"></i> Salon Discord : Archbosses</span>
+              <span class="channel-desc">Publications automatiques des Archbosses avec illustrations HD nettes et décompte dynamique</span>
+            </div>
+            <div class="webhook-input-wrap">
+              <i class="fa-solid fa-link"></i>
+              <input type="url" id="discord-webhook-arch" placeholder="URL Webhook Discord (https://discord.com/api/webhooks/...)" spellcheck="false">
+            </div>
+            <div class="channel-actions-row">
+              <button id="btn-send-archboss-week" class="btn-discord-send btn-discord-gold" title="Publier le planning Archboss de la quinzaine avec visuels HD">
+                <i class="fa-solid fa-crown"></i> Publier le Planning Archboss (Fiches HD)
+              </button>
+              <button id="btn-send-next-archboss" class="btn-discord-send btn-discord-purple" title="Envoyer une alerte pour le prochain Archboss imminent">
+                <i class="fa-solid fa-bolt"></i> Alerte Prochain Archboss
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Prévisualisation du texte Discord -->
+        <div class="discord-preview-container">
+          <div class="preview-bar">
+            <span><i class="fa-solid fa-terminal"></i> Message Discord prêt à être envoyé :</span>
+            <span class="preview-tip"><i class="fa-solid fa-sparkles"></i> Les membres Discord verront l'heure convertie à leur propre fuseau !</span>
+          </div>
+          <textarea id="discord-preview-box" class="discord-textarea" rows="6" readonly spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Détails de Boss (Quand on clique sur une carte) -->
+  <div id="boss-detail-modal" class="app-modal-overlay">
+    <div class="app-modal-box">
+      <div class="modal-header">
+        <h3 id="modal-boss-name">Détails du Boss</h3>
+        <button id="btn-close-boss-modal" class="btn-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="modal-boss-body">
+        <!-- Rempli par JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Conteneur Toast Notifications -->
+  <div id="app-toast-container" class="app-toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="boss-data.js"></script>
+  <script src="boss-calendar.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
