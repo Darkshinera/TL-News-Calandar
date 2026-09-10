@@ -763,8 +763,8 @@ class TLBossCalendar {
 
   formatBossEmbedMedia(imageUrl) {
     if (!imageUrl) return {};
-    // Rendu en grande image nette (évite la compression 80x80 de thumbnail sur Discord)
-    return { image: { url: imageUrl } };
+    // Rendu en miniature compacte dans le coin supérieur droit (format officiel Discord)
+    return { thumbnail: { url: imageUrl } };
   }
 
   updateHidePastButtonUI(btn) {

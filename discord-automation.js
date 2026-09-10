@@ -78,13 +78,14 @@ async function postArchbossWeekWebhook(webhookUrl, mentionRole = null, useLargeI
 
         const widthSpacer = '⠀'.repeat(30);
         const imgUrl = b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png';
-        const imgField = useLargeImage ? { image: { url: imgUrl } } : { thumbnail: { url: imgUrl } };
 
         dayEmbeds.push({
           title: `⏰ ${slot.timeSlot} — ${shortName}`,
           description: `**${pvpBadge}**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
           color: color,
-          ...imgField
+          thumbnail: {
+            url: imgUrl
+          }
         });
       });
     });
@@ -194,13 +195,14 @@ async function postNormalPeaceBossesWebhook(webhookUrl, daysCount = 3, mentionRo
         const shortName = (b.displayName || b.name || '').replace(/\s*Ascendant[e]?/gi, '').trim();
         const widthSpacer = '⠀'.repeat(30);
         const imgUrl = b.icon || 'https://thronewatch.app/assets/icons/bosses/adentus-asc.png';
-        const imgField = useLargeImage ? { image: { url: imgUrl } } : { thumbnail: { url: imgUrl } };
 
         dayEmbeds.push({
           title: `⏰ ${ev.timeSlot} — ${shortName}`,
           description: `**🟢 \`[Zone Pacifique Peace]\`**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
           color: 0x10B981,
-          ...imgField
+          thumbnail: {
+            url: imgUrl
+          }
         });
       });
     });
