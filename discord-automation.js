@@ -17,47 +17,39 @@ eval(bossDataCode);
 /**
  * 1. Envoie le Planning Archboss de la Quinzaine via Webhook Discord
  */
-async function postArchbossWeekWebhook(webhookUrl, mentionRole = null, useLargeImage = true) {
+async function postArchbossWeekWebhook(webhookUrl, mentionRole = null, useLargeImage = true, startDateStr = null) {
   if (!webhookUrl) throw new Error("Veuillez fournir une URL de Webhook Discord valide.");
 
   const today = new Date();
-  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-  const cycleInfo = getArchbossCycleInfo(todayStr);
-  const currentSchedule = cycleInfo.isPhaseB ? TL_ARCHBOSS_CYCLE_B : TL_ARCHBOSS_CYCLE_A;
+  const baseStr = startDateStr || `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  const [startY, startM, startD] = baseStr.split('-').map(Number);
+  const baseDate = new Date(startY, startM - 1, startD);
 
-  // Calcul des 14 dates du cycle
-  const [ay, am, ad] = TL_T4_ROTATION.anchorDate.split('-').map(Number);
-  const anchor = new Date(ay, am - 1, ad);
-  const diffDays = Math.floor((today.getTime() - anchor.getTime()) / (1000 * 60 * 60 * 24));
-  const superDay = (((diffDays % 28) + 28) % 28);
-  const cycleStart = new Date(today);
-  cycleStart.setDate(today.getDate() - (superDay % 14));
+  // Recherche des 4 prochains jours distincts contenant au moins un Archboss
+  const daysMap = new Map();
+  let offset = 0;
+  while (daysMap.size < 4 && offset < 28) {
+    const dt = new Date(baseDate);
+    dt.setDate(baseDate.getDate() + offset);
+    const yStr = dt.getFullYear();
+    const mStr = String(dt.getMonth() + 1).padStart(2, '0');
+    const dStr = String(dt.getDate()).padStart(2, '0');
+    const curDateStr = `${yStr}-${mStr}-${dStr}`;
 
-  const entries = [];
-  for (let i = 0; i < 14; i++) {
-    const dt = new Date(cycleStart);
-    dt.setDate(cycleStart.getDate() + i);
-    const dStr = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
-    const evs = getEventsForDate(dStr);
+    const evs = getEventsForDate(curDateStr);
     evs.forEach(ev => {
       const archs = ev.items.filter(b => b.archBoss);
       if (archs.length > 0) {
-        entries.push({ dateStr: dStr, timestampMs: ev.timestampMs, timeSlot: ev.timeSlot, items: archs });
+        if (!daysMap.has(curDateStr)) {
+          daysMap.set(curDateStr, []);
+        }
+        daysMap.get(curDateStr).push({ dateStr: curDateStr, timestampMs: ev.timestampMs, timeSlot: ev.timeSlot, items: archs });
       }
     });
+    offset++;
   }
 
-  // Regrouper par jour pour générer une carte Discord (Embed) par jour avec l'icône 3D du boss
-  const daysMap = new Map();
-  entries.forEach(e => {
-    if (!daysMap.has(e.dateStr)) {
-      daysMap.set(e.dateStr, []);
-    }
-    daysMap.get(e.dateStr).push(e);
-  });
-
-  // 4 jours d'Archboss par semaine (Vendredi, Samedi, Mardi, Mercredi)
-  const daysEntries = Array.from(daysMap.entries()).slice(0, 4);
+  const daysEntries = Array.from(daysMap.entries());
 
   for (let i = 0; i < daysEntries.length; i++) {
     const [dStr, daySlots] = daysEntries[i];

@@ -1193,34 +1193,43 @@ class TLBossCalendar {
       return;
     }
 
-    const dates = this.getQuinzaineDates(this.selectedDate, this.quinzaineView);
+    // Récupérer les 4 prochains jours distincts contenant au moins un Archboss à partir de la date choisie
+    const [startY, startM, startD] = (this.selectedDate || this.getTodayDateString()).split('-').map(Number);
+    const baseDate = new Date(startY, startM - 1, startD);
 
-    // Regrouper par jour strictement les Archbosses
     const daysMap = new Map();
-    dates.forEach(d => {
-      const evs = getEventsForDate(d);
+    let offset = 0;
+    while (daysMap.size < 4 && offset < 28) {
+      const dt = new Date(baseDate);
+      dt.setDate(baseDate.getDate() + offset);
+      const yStr = dt.getFullYear();
+      const mStr = String(dt.getMonth() + 1).padStart(2, '0');
+      const dStr = String(dt.getDate()).padStart(2, '0');
+      const dateStr = `${yStr}-${mStr}-${dStr}`;
+
+      const evs = getEventsForDate(dateStr);
       evs.forEach(ev => {
         const archs = ev.items.filter(b => b.archBoss);
         if (archs.length > 0) {
-          if (!daysMap.has(d)) {
-            daysMap.set(d, []);
+          if (!daysMap.has(dateStr)) {
+            daysMap.set(dateStr, []);
           }
-          daysMap.get(d).push({
+          daysMap.get(dateStr).push({
             timeSlot: ev.timeSlot,
             timestampMs: ev.timestampMs,
             items: archs
           });
         }
       });
-    });
+      offset++;
+    }
 
     if (daysMap.size === 0) {
       this.showToast('Aucun Archboss détecté pour cette période.');
       return;
     }
 
-    // 4 jours d'Archboss par semaine (Vendredi, Samedi, Mardi, Mercredi)
-    const daysEntries = Array.from(daysMap.entries()).slice(0, 4);
+    const daysEntries = Array.from(daysMap.entries());
 
     const btn = document.getElementById('btn-send-archboss-week');
     if (btn) btn.disabled = true;
