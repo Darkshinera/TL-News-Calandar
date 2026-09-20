@@ -92,7 +92,7 @@ function showBossModal(bossId) {
     name: bossId,
     displayName: bossId,
     type: 'Boss Inconnu',
-    icon: 'https://thronewatch.app/assets/icons/events/whale.png',
+    icon: 'assets/icons/events/whale.png',
     color: '#f59e0b'
   };
 

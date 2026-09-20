@@ -12,7 +12,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Adentus',
     type: 'Wildkin',
     food: 'Fruit',
-    icon: 'https://thronewatch.app/assets/icons/bosses/adentus-asc.png',
+    icon: 'assets/icons/bosses/adentus-asc.png',
     fallbackIcon: 'fa-paw',
     color: '#38ef7d',
     ascended: false
@@ -23,7 +23,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Adentus (Ascendant)',
     type: 'Wildkin',
     food: 'Fruit',
-    icon: 'https://thronewatch.app/assets/icons/bosses/adentus-asc.png',
+    icon: 'assets/icons/bosses/adentus-asc.png',
     fallbackIcon: 'fa-paw',
     color: '#ffaa00',
     ascended: true
@@ -34,7 +34,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Ahzreil',
     type: 'Demon',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/ahzreil-asc.png',
+    icon: 'assets/icons/bosses/ahzreil-asc.png',
     fallbackIcon: 'fa-skull-crossbones',
     color: '#b00020',
     ascended: false
@@ -45,7 +45,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Ahzreil (Ascendant)',
     type: 'Demon',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/ahzreil-asc.png',
+    icon: 'assets/icons/bosses/ahzreil-asc.png',
     fallbackIcon: 'fa-skull-crossbones',
     color: '#ff3366',
     ascended: true
@@ -56,7 +56,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Aridus',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/aridus.png',
+    icon: 'assets/icons/bosses/aridus.png',
     fallbackIcon: 'fa-gem',
     color: '#00d2ff',
     ascended: false
@@ -67,7 +67,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Aridus (Ascendant)',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/aridus-asc.png',
+    icon: 'assets/icons/bosses/aridus-asc.png',
     fallbackIcon: 'fa-gem',
     color: '#00ffff',
     ascended: true
@@ -78,7 +78,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Chernobog',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/chernobog-asc.png',
+    icon: 'assets/icons/bosses/chernobog-asc.png',
     fallbackIcon: 'fa-ghost',
     color: '#8e2de2',
     ascended: false
@@ -89,7 +89,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Chernobog (Ascendant)',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/chernobog-asc.png',
+    icon: 'assets/icons/bosses/chernobog-asc.png',
     fallbackIcon: 'fa-ghost',
     color: '#c471ed',
     ascended: true
@@ -100,7 +100,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Cornelius',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/cornelius-asc.png',
+    icon: 'assets/icons/bosses/cornelius-asc.png',
     fallbackIcon: 'fa-skull',
     color: '#7b4397',
     ascended: false
@@ -111,7 +111,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Cornelius (Ascendant)',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/cornelius-asc.png',
+    icon: 'assets/icons/bosses/cornelius-asc.png',
     fallbackIcon: 'fa-skull',
     color: '#9b51e0',
     ascended: true
@@ -122,7 +122,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Daigon',
     type: 'Humanoid',
     food: 'Plant',
-    icon: 'https://thronewatch.app/assets/icons/bosses/daigon-asc.png',
+    icon: 'assets/icons/bosses/daigon-asc.png',
     fallbackIcon: 'fa-person-rifle',
     color: '#f2994a',
     ascended: false
@@ -133,7 +133,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Daigon (Ascendant)',
     type: 'Humanoid',
     food: 'Plant',
-    icon: 'https://thronewatch.app/assets/icons/bosses/daigon-asc.png',
+    icon: 'assets/icons/bosses/daigon-asc.png',
     fallbackIcon: 'fa-person-rifle',
     color: '#f2c94c',
     ascended: true
@@ -142,7 +142,7 @@ const TL_BOSS_CATALOG = {
     id: 'deluzhnoa',
     name: 'Deluzhnoa (Archboss)',
     displayName: 'Deluzhnoa',
-    icon: 'https://thronewatch.app/assets/icons/bosses/deluzhnoa-asc.png',
+    icon: 'assets/icons/bosses/deluzhnoa-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#27ae60',
     archBoss: true,
@@ -152,7 +152,7 @@ const TL_BOSS_CATALOG = {
     id: 'deluzhnoa_asc',
     name: 'Deluzhnoa Ascendant (Archboss)',
     displayName: 'Deluzhnoa (Ascendant)',
-    icon: 'https://thronewatch.app/assets/icons/bosses/deluzhnoa-asc.png',
+    icon: 'assets/icons/bosses/deluzhnoa-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#2ecc71',
     archBoss: true,
@@ -164,7 +164,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Excavator-9',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/excavator9-asc.png',
+    icon: 'assets/icons/bosses/excavator9-asc.png',
     fallbackIcon: 'fa-robot',
     color: '#56ccf2',
     ascended: false
@@ -175,7 +175,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Excavator-9 (Ascendant)',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/excavator9-asc.png',
+    icon: 'assets/icons/bosses/excavator9-asc.png',
     fallbackIcon: 'fa-robot',
     color: '#2d9cdb',
     ascended: true
@@ -186,7 +186,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Grand Aelon',
     type: 'Humanoid',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/grand-aelon-asc.png',
+    icon: 'assets/icons/bosses/grand-aelon-asc.png',
     fallbackIcon: 'fa-user-shield',
     color: '#bb6bd9',
     ascended: false
@@ -197,7 +197,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Grand Aelon (Ascendant)',
     type: 'Humanoid',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/grand-aelon-asc.png',
+    icon: 'assets/icons/bosses/grand-aelon-asc.png',
     fallbackIcon: 'fa-user-shield',
     color: '#eb5757',
     ascended: true
@@ -208,7 +208,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Junobote',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/junobote-asc.png',
+    icon: 'assets/icons/bosses/junobote-asc.png',
     fallbackIcon: 'fa-shield-halved',
     color: '#f39c12',
     ascended: false
@@ -219,7 +219,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Junobote (Ascendant)',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/junobote-asc.png',
+    icon: 'assets/icons/bosses/junobote-asc.png',
     fallbackIcon: 'fa-shield-halved',
     color: '#e67e22',
     ascended: true
@@ -230,7 +230,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Kowazan',
     type: 'Wildkin',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/kowazan-asc.png',
+    icon: 'assets/icons/bosses/kowazan-asc.png',
     fallbackIcon: 'fa-paw',
     color: '#16a085',
     ascended: false
@@ -241,7 +241,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Kowazan (Ascendant)',
     type: 'Wildkin',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/kowazan-asc.png',
+    icon: 'assets/icons/bosses/kowazan-asc.png',
     fallbackIcon: 'fa-paw',
     color: '#1abc9c',
     ascended: true
@@ -252,7 +252,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Leviathan',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/leviathan-asc.png',
+    icon: 'assets/icons/bosses/leviathan-asc.png',
     fallbackIcon: 'fa-gears',
     color: '#2980b9',
     ascended: false
@@ -263,7 +263,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Leviathan (Ascendant)',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/leviathan-asc.png',
+    icon: 'assets/icons/bosses/leviathan-asc.png',
     fallbackIcon: 'fa-gears',
     color: '#3498db',
     ascended: true
@@ -274,7 +274,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Malakar',
     type: 'Demon',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/malakar-asc.png',
+    icon: 'assets/icons/bosses/malakar-asc.png',
     fallbackIcon: 'fa-fire',
     color: '#c0392b',
     ascended: false
@@ -285,7 +285,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Malakar (Ascendant)',
     type: 'Demon',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/malakar-asc.png',
+    icon: 'assets/icons/bosses/malakar-asc.png',
     fallbackIcon: 'fa-fire',
     color: '#e74c3c',
     ascended: true
@@ -296,7 +296,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Manticus',
     type: 'Wildkin',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/manticus-asc.png',
+    icon: 'assets/icons/bosses/manticus-asc.png',
     fallbackIcon: 'fa-dragon',
     color: '#d35400',
     ascended: false
@@ -307,7 +307,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Manticus (Ascendant)',
     type: 'Wildkin',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/manticus-asc.png',
+    icon: 'assets/icons/bosses/manticus-asc.png',
     fallbackIcon: 'fa-dragon',
     color: '#e67e22',
     ascended: true
@@ -318,7 +318,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Minezerok',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/minezerok-asc.png',
+    icon: 'assets/icons/bosses/minezerok-asc.png',
     fallbackIcon: 'fa-skull',
     color: '#8e44ad',
     ascended: false
@@ -329,7 +329,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Minezerok (Ascendant)',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/minezerok-asc.png',
+    icon: 'assets/icons/bosses/minezerok-asc.png',
     fallbackIcon: 'fa-skull',
     color: '#9b59b6',
     ascended: true
@@ -340,7 +340,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Morokai',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/morokai-asc.png',
+    icon: 'assets/icons/bosses/morokai-asc.png',
     fallbackIcon: 'fa-skull',
     color: '#2c3e50',
     ascended: false
@@ -351,7 +351,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Morokai (Ascendant)',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/morokai-asc.png',
+    icon: 'assets/icons/bosses/morokai-asc.png',
     fallbackIcon: 'fa-skull',
     color: '#34495e',
     ascended: true
@@ -362,7 +362,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Nirma',
     type: 'Humanoid',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/nirma-asc.png',
+    icon: 'assets/icons/bosses/nirma-asc.png',
     fallbackIcon: 'fa-user-ninja',
     color: '#1abc9c',
     ascended: false
@@ -373,7 +373,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Nirma (Ascendante)',
     type: 'Humanoid',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/nirma-asc.png',
+    icon: 'assets/icons/bosses/nirma-asc.png',
     fallbackIcon: 'fa-user-ninja',
     color: '#16a085',
     ascended: true
@@ -384,7 +384,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Pakilo Naru',
     type: 'Humanoid',
     food: 'Fruit',
-    icon: 'https://thronewatch.app/assets/icons/bosses/pakilo-naru-asc.png',
+    icon: 'assets/icons/bosses/pakilo-naru-asc.png',
     fallbackIcon: 'fa-mask',
     color: '#e67e22',
     ascended: false
@@ -395,7 +395,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Pakilo Naru (Ascendant)',
     type: 'Humanoid',
     food: 'Fruit',
-    icon: 'https://thronewatch.app/assets/icons/bosses/pakilo-naru-asc.png',
+    icon: 'assets/icons/bosses/pakilo-naru-asc.png',
     fallbackIcon: 'fa-mask',
     color: '#f39c12',
     ascended: true
@@ -406,7 +406,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Porfos',
     type: 'Wildkin',
     food: 'Insect',
-    icon: 'https://thronewatch.app/assets/icons/bosses/porfos.png',
+    icon: 'assets/icons/bosses/porfos.png',
     fallbackIcon: 'fa-paw',
     color: '#27ae60',
     ascended: false
@@ -417,7 +417,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Talus',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/talus-asc.png',
+    icon: 'assets/icons/bosses/talus-asc.png',
     fallbackIcon: 'fa-monument',
     color: '#7f8c8d',
     ascended: false
@@ -428,7 +428,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Talus (Ascendant)',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/talus-asc.png',
+    icon: 'assets/icons/bosses/talus-asc.png',
     fallbackIcon: 'fa-monument',
     color: '#95a5a6',
     ascended: true
@@ -439,7 +439,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Thuban',
     type: 'Wildkin',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/thuban.png',
+    icon: 'assets/icons/bosses/thuban.png',
     fallbackIcon: 'fa-dragon',
     color: '#e74c3c',
     ascended: false
@@ -450,7 +450,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Grimturg',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/grimturg.png',
+    icon: 'assets/icons/bosses/grimturg.png',
     fallbackIcon: 'fa-skull',
     color: '#8e2de2',
     ascended: false
@@ -461,7 +461,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Exodus',
     type: 'Demon',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/exodus.png',
+    icon: 'assets/icons/bosses/exodus.png',
     fallbackIcon: 'fa-fire',
     color: '#ff3366',
     ascended: false
@@ -474,7 +474,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Giant Cordy',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png',
+    icon: 'assets/icons/bosses/giant-cordy-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#f1c40f',
     archBoss: true,
@@ -486,7 +486,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Giant Cordy (Ascendant)',
     type: 'Construct',
     food: 'Mineral',
-    icon: 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png',
+    icon: 'assets/icons/bosses/giant-cordy-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#f39c12',
     archBoss: true,
@@ -498,7 +498,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Queen Bellandir',
     type: 'Wildkin',
     food: 'Insect',
-    icon: 'https://thronewatch.app/assets/icons/bosses/queen-bellandir-asc.png',
+    icon: 'assets/icons/bosses/queen-bellandir-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#e74c3c',
     archBoss: true,
@@ -510,7 +510,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Queen Bellandir (Ascendante)',
     type: 'Wildkin',
     food: 'Insect',
-    icon: 'https://thronewatch.app/assets/icons/bosses/queen-bellandir-asc.png',
+    icon: 'assets/icons/bosses/queen-bellandir-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#c0392b',
     archBoss: true,
@@ -522,7 +522,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Tevent',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/tevent-asc.png',
+    icon: 'assets/icons/bosses/tevent-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#8e44ad',
     archBoss: true,
@@ -534,7 +534,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Tevent (Ascendant)',
     type: 'Undead',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/tevent-asc.png',
+    icon: 'assets/icons/bosses/tevent-asc.png',
     fallbackIcon: 'fa-crown',
     color: '#9b59b6',
     archBoss: true,
@@ -546,7 +546,7 @@ const TL_BOSS_CATALOG = {
     displayName: 'Ramux',
     type: 'Demon',
     food: 'Meat',
-    icon: 'https://thronewatch.app/assets/icons/bosses/ramux.png',
+    icon: 'assets/icons/bosses/ramux.png',
     fallbackIcon: 'fa-crown',
     color: '#e67e22',
     archBoss: true,
@@ -559,7 +559,7 @@ const TL_BOSS_CATALOG = {
     name: 'Gigantrite (Baleine Céleste)',
     displayName: 'Gigantrite / Whale',
     type: 'World Event',
-    icon: 'https://thronewatch.app/assets/icons/events/gigantrite.png',
+    icon: 'assets/icons/events/gigantrite.png',
     fallbackIcon: 'fa-water',
     color: '#00c6ff',
     isWorldEvent: true
@@ -569,7 +569,7 @@ const TL_BOSS_CATALOG = {
     name: 'Gigantrite (Vol de la Baleine)',
     displayName: 'Gigantrite Event',
     type: 'World Event',
-    icon: 'https://thronewatch.app/assets/icons/events/whale.png',
+    icon: 'assets/icons/events/whale.png',
     fallbackIcon: 'fa-water',
     color: '#00c6ff',
     isWorldEvent: true
@@ -579,7 +579,7 @@ const TL_BOSS_CATALOG = {
     name: 'Pierre de Faille (Riftstone)',
     displayName: 'Riftstone PvP',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/riftstone.png',
+    icon: 'assets/icons/events/riftstone.png',
     fallbackIcon: 'fa-gem',
     color: '#9b59b6',
     isPvP: true
@@ -589,7 +589,7 @@ const TL_BOSS_CATALOG = {
     name: 'Pierre de Bénédiction (Boonstone)',
     displayName: 'Boonstone PvP',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/boonstone.png',
+    icon: 'assets/icons/events/boonstone.png',
     fallbackIcon: 'fa-shield',
     color: '#27ae60',
     isPvP: true
@@ -599,7 +599,7 @@ const TL_BOSS_CATALOG = {
     name: 'Siège du Château (Stonegard)',
     displayName: 'Castle Siege',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/siege.png',
+    icon: 'assets/icons/events/siege.png',
     fallbackIcon: 'fa-chess-rook',
     color: '#e74c3c',
     isPvP: true
@@ -609,7 +609,7 @@ const TL_BOSS_CATALOG = {
     name: 'Convoi de la Taxe',
     displayName: 'Tax Delivery',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/tax.png',
+    icon: 'assets/icons/events/tax.png',
     fallbackIcon: 'fa-coins',
     color: '#f1c40f',
     isPvP: true

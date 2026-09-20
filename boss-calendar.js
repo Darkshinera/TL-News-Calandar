@@ -1106,6 +1106,22 @@ class TLBossCalendar {
     }
   }
 
+  getDiscordImageUrl(iconPath) {
+    if (!iconPath) return 'https://raw.githubusercontent.com/Darkshinera/TL-News-Calandar/main/assets/icons/bosses/giant-cordy-asc.png';
+    if (iconPath.startsWith('http://') || iconPath.startsWith('https://')) {
+      return iconPath;
+    }
+    const cleanPath = iconPath.replace(/^\.?\//, '');
+    return `https://raw.githubusercontent.com/Darkshinera/TL-News-Calandar/main/${cleanPath}`;
+  }
+
+  formatBossEmbedMedia(imgUrl) {
+    const url = this.getDiscordImageUrl(imgUrl);
+    return this.discordImageStyle === 'large'
+      ? { image: { url } }
+      : { thumbnail: { url } };
+  }
+
   async sendToDiscordWebhook() {
     if (!this.webhookUrl) {
       this.showToast('⚠️ Veuillez renseigner l\'URL de votre Webhook Discord d\'abord.', 'warning');
@@ -1145,17 +1161,17 @@ class TLBossCalendar {
 
     const payload = {
       username: 'Throne & Liberty Watch',
-      avatar_url: 'https://thronewatch.app/assets/icons/events/whale.png',
+      avatar_url: this.getDiscordImageUrl('assets/icons/events/whale.png'),
       content: this.discordMention === 'everyone' ? '@everyone' : this.discordMention === 'here' ? '@here' : undefined,
       embeds: [
         {
           title: `PROGRAMME DU JOUR — ${capitalizedDay.toUpperCase()}`,
           description: `**Cycle T4 • Jour ${rotationDay}/14**\n*Les horaires s'ajustent automatiquement à votre fuseau.*\n\n${slotLines.join('\n\n')}`,
           color: heroBoss?.isPvP ? 0xEF4444 : 0x3B82F6,
-          ...this.formatBossEmbedMedia(heroBoss?.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png'),
+          ...this.formatBossEmbedMedia(heroBoss?.icon || 'assets/icons/bosses/giant-cordy-asc.png'),
           footer: {
             text: `Throne & Liberty Companion • Kazar EU`,
-            icon_url: `https://thronewatch.app/assets/ui/favicon.png`
+            icon_url: this.getDiscordImageUrl('assets/ui/favicon.png')
           },
           timestamp: new Date().toISOString()
         }
@@ -1262,7 +1278,7 @@ class TLBossCalendar {
               description: `**${pvpBadge}**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
               color: color,
               thumbnail: {
-                url: b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png'
+                url: this.getDiscordImageUrl(b.icon || 'assets/icons/bosses/giant-cordy-asc.png')
               }
             });
           });
@@ -1350,7 +1366,7 @@ class TLBossCalendar {
         description: `**${pvpBadge}**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
         color: color,
         thumbnail: {
-          url: b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png'
+          url: this.getDiscordImageUrl(b.icon || 'assets/icons/bosses/giant-cordy-asc.png')
         }
       };
     });
@@ -1445,7 +1461,7 @@ class TLBossCalendar {
               title: `⏰ ${ev.timeSlot} — ${shortName}`,
               description: `**🟢 \`[Zone Pacifique Peace]\`**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
               color: 0x10B981,
-              ...this.formatBossEmbedMedia(b.icon || 'https://thronewatch.app/assets/icons/bosses/adentus-asc.png')
+              ...this.formatBossEmbedMedia(b.icon || 'assets/icons/bosses/adentus-asc.png')
             });
           });
         });
@@ -1473,7 +1489,7 @@ class TLBossCalendar {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               username: 'Throne & Liberty Watch',
-              avatar_url: 'https://thronewatch.app/assets/icons/events/whale.png',
+              avatar_url: this.getDiscordImageUrl('assets/icons/events/whale.png'),
               content: content,
               embeds: chunk
             })
@@ -1549,7 +1565,7 @@ class TLBossCalendar {
         title: `⏰ ${nextEvent.timeSlot} — ${bName}`,
         description: `**🟢 \`[Zone Pacifique Peace]\`**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
         color: 0x10B981,
-        ...this.formatBossEmbedMedia(b.icon || 'https://thronewatch.app/assets/icons/bosses/adentus-asc.png')
+        ...this.formatBossEmbedMedia(b.icon || 'assets/icons/bosses/adentus-asc.png')
       };
     });
 
@@ -1561,7 +1577,7 @@ class TLBossCalendar {
 
     const payload = {
       username: 'Throne & Liberty Watch',
-      avatar_url: 'https://thronewatch.app/assets/icons/events/whale.png',
+      avatar_url: this.getDiscordImageUrl('assets/icons/events/whale.png'),
       content: content,
       embeds: embeds
     };

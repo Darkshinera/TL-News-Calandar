@@ -14,6 +14,15 @@ const path = require('path');
 const bossDataCode = fs.readFileSync(path.join(__dirname, 'boss-data.js'), 'utf8');
 eval(bossDataCode);
 
+function getDiscordImageUrl(iconPath) {
+  if (!iconPath) return 'https://raw.githubusercontent.com/Darkshinera/TL-News-Calandar/main/assets/icons/bosses/giant-cordy-asc.png';
+  if (iconPath.startsWith('http://') || iconPath.startsWith('https://')) {
+    return iconPath;
+  }
+  const cleanPath = iconPath.replace(/^\.?\//, '');
+  return `https://raw.githubusercontent.com/Darkshinera/TL-News-Calandar/main/${cleanPath}`;
+}
+
 /**
  * 1. Envoie le Planning Archboss de la Quinzaine via Webhook Discord
  */
@@ -69,7 +78,7 @@ async function postArchbossWeekWebhook(webhookUrl, mentionRole = null, useLargeI
         const color = isPvP ? 0xEF4444 : 0x10B981;
 
         const widthSpacer = '⠀'.repeat(30);
-        const imgUrl = b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png';
+        const imgUrl = getDiscordImageUrl(b.icon || 'assets/icons/bosses/giant-cordy-asc.png');
 
         dayEmbeds.push({
           title: `⏰ ${slot.timeSlot} — ${shortName}`,
@@ -92,7 +101,7 @@ async function postArchbossWeekWebhook(webhookUrl, mentionRole = null, useLargeI
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         username: 'Throne & Liberty Watch',
-        avatar_url: 'https://thronewatch.app/assets/icons/events/whale.png',
+        avatar_url: getDiscordImageUrl('assets/icons/events/whale.png'),
         content: content,
         embeds: dayEmbeds
       })
@@ -186,7 +195,7 @@ async function postNormalPeaceBossesWebhook(webhookUrl, daysCount = 3, mentionRo
       peaceBosses.forEach(b => {
         const shortName = (b.displayName || b.name || '').replace(/\s*Ascendant[e]?/gi, '').trim();
         const widthSpacer = '⠀'.repeat(30);
-        const imgUrl = b.icon || 'https://thronewatch.app/assets/icons/bosses/adentus-asc.png';
+        const imgUrl = getDiscordImageUrl(b.icon || 'assets/icons/bosses/adentus-asc.png');
 
         dayEmbeds.push({
           title: `⏰ ${ev.timeSlot} — ${shortName}`,
@@ -220,7 +229,7 @@ async function postNormalPeaceBossesWebhook(webhookUrl, daysCount = 3, mentionRo
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: 'Throne & Liberty Watch',
-          avatar_url: 'https://thronewatch.app/assets/icons/events/whale.png',
+          avatar_url: getDiscordImageUrl('assets/icons/events/whale.png'),
           content,
           embeds: chunk
         })
