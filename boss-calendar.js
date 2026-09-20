@@ -5,14 +5,16 @@
 class TLBossCalendar {
   constructor() {
     this.selectedDate = this.getTodayDateString();
-    this.selectedTimeZone = 'Europe/Paris';
-    this.use24Hour = true;
-    this.activeFilter = 'all';
+    this.selectedTimeZone = localStorage.getItem('tl_timezone') || 'Europe/Paris';
+    this.use24Hour = localStorage.getItem('tl_use_24h') !== 'false';
+    this.activeFilter = localStorage.getItem('tl_active_filter') || 'all';
     this.calendarView = localStorage.getItem('tl_calendar_view') || 'day';
-    this.quinzaineView = 'current'; // 'current' (A) ou 'next' (B)
+    this.quinzaineView = localStorage.getItem('tl_quinzaine_view') || 'current'; // 'current' (A) ou 'next' (B)
     this.specificBossFilter = 'all';
-    this.selectedBossFilters = new Set(); // Multi-sélection de boss
-    this.includeRegularIn2Weeks = false;
+    this.selectedBossFilters = this.loadBossFilters(); // Multi-sélection de boss persistée
+    this.includeRegularIn2Weeks = localStorage.getItem('tl_include_regular_2w') === 'true';
+    this.hidePastEvents = localStorage.getItem('tl_hide_past_events') === 'true';
+    this.discordPanelOpen = localStorage.getItem('tl_discord_panel_open') === 'true';
     this.webhookArchUrl = localStorage.getItem('tl_discord_webhook_arch') || localStorage.getItem('tl_discord_webhook_url') || '';
     this.webhookNormalUrl = localStorage.getItem('tl_discord_webhook_normal') || '';
     this.webhookUrl = this.webhookArchUrl;
@@ -21,6 +23,27 @@ class TLBossCalendar {
     this.countdownInterval = null;
 
     this.init();
+  }
+
+  loadBossFilters() {
+    try {
+      const raw = localStorage.getItem('tl_boss_filters');
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr)) {
+          return new Set(arr);
+        }
+      }
+    } catch (e) {
+      console.warn('Erreur lecture tl_boss_filters:', e);
+    }
+    return new Set();
+  }
+
+  saveBossFilters() {
+    try {
+      localStorage.setItem('tl_boss_filters', JSON.stringify([...this.selectedBossFilters]));
+    } catch (e) {}
   }
 
   getTodayDateString() {
@@ -109,19 +132,28 @@ class TLBossCalendar {
     // Sélecteur de Quinzaine (Quinzaine Actuelle A vs Quinzaine Suivante B)
     const btnQuinzaineCurrent = document.getElementById('btn-quinzaine-current');
     const btnQuinzaineNext = document.getElementById('btn-quinzaine-next');
-    if (btnQuinzaineCurrent) {
+    if (btnQuinzaineCurrent && btnQuinzaineNext) {
+      if (this.quinzaineView === 'next') {
+        btnQuinzaineNext.classList.add('active');
+        btnQuinzaineCurrent.classList.remove('active');
+      } else {
+        btnQuinzaineCurrent.classList.add('active');
+        btnQuinzaineNext.classList.remove('active');
+      }
+
       btnQuinzaineCurrent.addEventListener('click', () => {
         this.quinzaineView = 'current';
+        localStorage.setItem('tl_quinzaine_view', 'current');
         btnQuinzaineCurrent.classList.add('active');
-        if (btnQuinzaineNext) btnQuinzaineNext.classList.remove('active');
+        btnQuinzaineNext.classList.remove('active');
         this.render2WeeksView();
       });
-    }
-    if (btnQuinzaineNext) {
+
       btnQuinzaineNext.addEventListener('click', () => {
         this.quinzaineView = 'next';
+        localStorage.setItem('tl_quinzaine_view', 'next');
         btnQuinzaineNext.classList.add('active');
-        if (btnQuinzaineCurrent) btnQuinzaineCurrent.classList.remove('active');
+        btnQuinzaineCurrent.classList.remove('active');
         this.render2WeeksView();
       });
     }
@@ -135,6 +167,7 @@ class TLBossCalendar {
       chkRegular.checked = this.includeRegularIn2Weeks;
       chkRegular.addEventListener('change', (e) => {
         this.includeRegularIn2Weeks = e.target.checked;
+        localStorage.setItem('tl_include_regular_2w', String(this.includeRegularIn2Weeks));
         if (this.calendarView === '2weeks') {
           this.render2WeeksView();
         }
@@ -144,8 +177,10 @@ class TLBossCalendar {
     // Sélecteur de fuseau horaire
     const tzSelect = document.getElementById('cal-timezone-select');
     if (tzSelect) {
+      tzSelect.value = this.selectedTimeZone;
       tzSelect.addEventListener('change', (e) => {
         this.selectedTimeZone = e.target.value;
+        localStorage.setItem('tl_timezone', this.selectedTimeZone);
         this.render();
       });
     }
@@ -153,8 +188,10 @@ class TLBossCalendar {
     // Format d'heure 24h / 12h
     const formatBtn = document.getElementById('cal-format-toggle');
     if (formatBtn) {
+      formatBtn.textContent = this.use24Hour ? '24h' : '12h';
       formatBtn.addEventListener('click', () => {
         this.use24Hour = !this.use24Hour;
+        localStorage.setItem('tl_use_24h', String(this.use24Hour));
         formatBtn.textContent = this.use24Hour ? '24h' : '12h';
         this.render();
       });
@@ -163,10 +200,16 @@ class TLBossCalendar {
     // Filtres thématiques
     const filterButtons = document.querySelectorAll('.cal-filter-btn, .filter-pill[data-filter]');
     filterButtons.forEach(btn => {
+      if (btn.dataset.filter === this.activeFilter) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
       btn.addEventListener('click', () => {
         filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         this.activeFilter = btn.dataset.filter;
+        localStorage.setItem('tl_active_filter', this.activeFilter);
         if (this.calendarView === '2weeks') {
           this.render2WeeksView();
         } else {
@@ -256,6 +299,17 @@ class TLBossCalendar {
     const discordPanelCard = document.getElementById('discord-panel-card');
     const discordPlusIcon = document.getElementById('discord-plus-icon');
     if (btnToggleDiscord && discordPanelCard) {
+      if (this.discordPanelOpen) {
+        discordPanelCard.style.display = 'flex';
+        btnToggleDiscord.classList.add('is-open');
+        if (discordPlusIcon) {
+          discordPlusIcon.classList.remove('fa-plus');
+          discordPlusIcon.classList.add('fa-minus');
+        }
+        const hint = btnToggleDiscord.querySelector('.discord-toggle-hint');
+        if (hint) hint.textContent = 'Cliquer pour fermer';
+      }
+
       btnToggleDiscord.addEventListener('click', () => {
         const isHidden = discordPanelCard.style.display === 'none' || !discordPanelCard.style.display;
         if (isHidden) {
@@ -267,6 +321,7 @@ class TLBossCalendar {
           }
           const hint = btnToggleDiscord.querySelector('.discord-toggle-hint');
           if (hint) hint.textContent = 'Cliquer pour fermer';
+          localStorage.setItem('tl_discord_panel_open', 'true');
         } else {
           discordPanelCard.style.display = 'none';
           btnToggleDiscord.classList.remove('is-open');
@@ -276,6 +331,7 @@ class TLBossCalendar {
           }
           const hint = btnToggleDiscord.querySelector('.discord-toggle-hint');
           if (hint) hint.textContent = 'Cliquer pour ouvrir';
+          localStorage.setItem('tl_discord_panel_open', 'false');
         }
       });
     }
@@ -339,6 +395,9 @@ class TLBossCalendar {
         this.clearBossFilters();
       });
     }
+
+    // Restaurer l'affichage UI des filtres de boss chargés depuis le localStorage
+    this.updateBossFiltersUI();
   }
 
   toggleBossFilter(filterKey, chipEl = null) {
@@ -355,6 +414,7 @@ class TLBossCalendar {
       if (chipEl) chipEl.classList.add('active');
     }
 
+    this.saveBossFilters();
     this.updateBossFiltersUI();
     this.refreshViews();
   }
@@ -364,6 +424,7 @@ class TLBossCalendar {
 
     if (!this.selectedBossFilters.has(bossId)) {
       this.selectedBossFilters.add(bossId);
+      this.saveBossFilters();
       const meta = TL_BOSS_CATALOG[bossId] || { name: bossId };
       this.showToast(`🔍 ${meta.displayName || meta.name} ajouté aux filtres`);
     }
@@ -375,6 +436,7 @@ class TLBossCalendar {
   removeBossFilter(bossId) {
     if (this.selectedBossFilters.has(bossId)) {
       this.selectedBossFilters.delete(bossId);
+      this.saveBossFilters();
       const meta = TL_BOSS_CATALOG[bossId] || { name: bossId };
       this.showToast(`Retiré : ${meta.displayName || meta.name}`);
     }
@@ -385,6 +447,7 @@ class TLBossCalendar {
 
   clearBossFilters() {
     this.selectedBossFilters.clear();
+    this.saveBossFilters();
     this.updateBossFiltersUI();
     this.refreshViews();
     this.showToast('✨ Tous les boss affichés');
