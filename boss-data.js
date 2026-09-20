@@ -444,6 +444,28 @@ const TL_BOSS_CATALOG = {
     color: '#e74c3c',
     ascended: false
   },
+  grimturg: {
+    id: 'grimturg',
+    name: 'Grimturg',
+    displayName: 'Grimturg',
+    type: 'Undead',
+    food: 'Meat',
+    icon: 'https://thronewatch.app/assets/icons/bosses/grimturg.png',
+    fallbackIcon: 'fa-skull',
+    color: '#8e2de2',
+    ascended: false
+  },
+  exodus: {
+    id: 'exodus',
+    name: 'Exodus',
+    displayName: 'Exodus',
+    type: 'Demon',
+    food: 'Meat',
+    icon: 'https://thronewatch.app/assets/icons/bosses/exodus.png',
+    fallbackIcon: 'fa-fire',
+    color: '#ff3366',
+    ascended: false
+  },
 
   // ARCHBOSSES (Légendaires)
   giant_cordy: {
@@ -637,7 +659,13 @@ const TL_BOSS_ALIASES = {
   'aelon': 'grand_aelon',
   'aelon_asc': 'grand_aelon_asc',
   'excavator': 'excavator9',
-  'excavator_asc': 'excavator9_asc'
+  'excavator_asc': 'excavator9_asc',
+  'grimturg': 'grimturg',
+  'grim': 'grimturg',
+  'grim_turg': 'grimturg',
+  'exodus': 'exodus',
+  'exo': 'exodus',
+  'exavis': 'exodus'
 };
 
 // Rotation T4 - 14 Jours (Week A / Week B)
@@ -656,8 +684,8 @@ const TL_T4_ROTATION = {
       '01:00': 'manticus_asc | minezerok_asc'
     },
     '2': {
-      '13:00': 'porfos | junobote_asc',
-      '16:00': 'pakilo_naru_asc | morokai_asc',
+      '13:00': 'porfos | grimturg',
+      '16:00': 'pakilo_naru_asc | grimturg',
       '20:30': 'manticus_asc !gpvp',
       '22:00': 'manticus_asc | cornelius_asc',
       '23:00': 'thuban | adentus_asc',
@@ -665,10 +693,10 @@ const TL_T4_ROTATION = {
       '01:00': 'porfos | chernobog_asc'
     },
     '3': {
-      '13:00': 'leviathan_asc | ahzreil_asc',
-      '16:00': 'thuban | aridus_asc',
-      '20:30': 'daigon_asc !gpvp',
-      '22:00': 'daigon_asc | malakar_asc',
+      '13:00': 'leviathan_asc | exodus',
+      '16:00': 'thuban | exodus',
+      '20:30': 'grimturg !gpvp',
+      '22:00': 'daigon_asc | grimturg',
       '23:00': 'porfos | kowazan_asc',
       '23:30': 'porfos !gpvp',
       '01:00': 'thuban | talus_asc'
@@ -676,9 +704,9 @@ const TL_T4_ROTATION = {
     '4': {
       '13:00': 'daigon_asc | grand_aelon_asc',
       '16:00': 'porfos | adentus_asc',
-      '20:00': 'pakilo_naru_asc | nirma_asc',
-      '20:30': 'pakilo_naru_asc !gpvp',
-      '23:00': 'thuban | ahzreil_asc',
+      '20:00': 'pakilo_naru_asc | exodus',
+      '20:30': 'exodus !gpvp',
+      '23:00': 'thuban | grimturg',
       '23:30': 'thuban !gpvp',
       '01:00': 'daigon_asc | excavator9_asc'
     },
@@ -687,13 +715,13 @@ const TL_T4_ROTATION = {
       '16:00': 'leviathan_asc | junobote_asc',
       '20:00': 'manticus_asc | morokai_asc',
       '20:30': 'manticus_asc !gpvp',
-      '23:00': 'daigon_asc | cornelius_asc',
+      '23:00': 'daigon_asc | exodus',
       '23:30': 'daigon_asc !gpvp',
       '01:00': 'pakilo_naru_asc | adentus_asc'
     },
     '6': {
       '13:00': 'porfos | chernobog_asc',
-      '16:00': 'daigon_asc | ahzreil_asc',
+      '16:00': 'daigon_asc | grimturg',
       '20:30': 'leviathan_asc !gpvp',
       '22:00': 'leviathan_asc | aridus_asc',
       '23:00': 'thuban | malakar_asc',
@@ -701,8 +729,8 @@ const TL_T4_ROTATION = {
       '01:00': 'pakilo_naru_asc | kowazan_asc'
     },
     '7': {
-      '13:00': 'manticus_asc | talus_asc',
-      '16:00': 'leviathan_asc | grand_aelon_asc',
+      '13:00': 'manticus_asc | grimturg',
+      '16:00': 'leviathan_asc | exodus',
       '20:30': 'manticus_asc !gpvp',
       '22:00': 'manticus_asc | adentus_asc',
       '23:00': 'pakilo_naru_asc | nirma_asc',
@@ -710,7 +738,7 @@ const TL_T4_ROTATION = {
       '01:00': 'porfos | ahzreil_asc'
     },
     '8': {
-      '13:00': 'pakilo_naru_asc | excavator9_asc',
+      '13:00': 'pakilo_naru_asc | exodus',
       '16:00': 'manticus_asc | minezerok_asc',
       '20:00': 'leviathan_asc | junobote_asc',
       '20:30': 'leviathan_asc !gpvp',
@@ -721,35 +749,35 @@ const TL_T4_ROTATION = {
     '9': {
       '13:00': 'thuban | adentus_asc',
       '16:00': 'leviathan_asc | chernobog_asc',
-      '20:30': 'pakilo_naru_asc !gpvp',
-      '22:00': 'pakilo_naru_asc | ahzreil_asc',
+      '20:30': 'grimturg !gpvp',
+      '22:00': 'pakilo_naru_asc | grimturg',
       '23:00': 'porfos | aridus_asc',
       '23:30': 'porfos !gpvp',
       '01:00': 'thuban | malakar_asc'
     },
     '10': {
-      '13:00': 'daigon_asc | kowazan_asc',
+      '13:00': 'daigon_asc | grimturg',
       '16:00': 'porfos | talus_asc',
-      '20:30': 'manticus_asc !gpvp',
-      '22:00': 'manticus_asc | grand_aelon_asc',
-      '23:00': 'thuban | adentus_asc',
+      '20:30': 'exodus !gpvp',
+      '22:00': 'manticus_asc | exodus',
+      '23:00': 'thuban | grimturg',
       '23:30': 'thuban !gpvp',
       '01:00': 'porfos | nirma_asc'
     },
     '11': {
-      '13:00': 'daigon_asc | ahzreil_asc',
+      '13:00': 'daigon_asc | exodus',
       '16:00': 'thuban | excavator9_asc',
-      '20:00': 'leviathan_asc | minezerok_asc',
-      '20:30': 'manticus_asc !gpvp',
-      '23:00': 'porfos | junobote_asc',
+      '20:00': 'leviathan_asc | grimturg',
+      '20:30': 'grimturg !gpvp',
+      '23:00': 'porfos | exodus',
       '23:30': 'porfos !gpvp',
       '01:00': 'daigon_asc | adentus_asc'
     },
     '12': {
       '13:00': 'pakilo_naru_asc | nirma_asc',
       '16:00': 'leviathan_asc | ahzreil_asc',
-      '20:00': 'daigon_asc | excavator9_asc',
-      '20:30': 'daigon_asc !gpvp',
+      '20:00': 'daigon_asc | exodus',
+      '20:30': 'exodus !gpvp',
       '23:00': 'manticus_asc | minezerok_asc',
       '23:30': 'manticus_asc !gpvp',
       '01:00': 'leviathan_asc | junobote_asc'
@@ -757,8 +785,8 @@ const TL_T4_ROTATION = {
     '13': {
       '13:00': 'thuban | morokai_asc',
       '16:00': 'daigon_asc | cornelius_asc',
-      '20:30': 'pakilo_naru_asc !gpvp',
-      '22:00': 'pakilo_naru_asc | adentus_asc',
+      '20:30': 'grimturg !gpvp',
+      '22:00': 'pakilo_naru_asc | grimturg',
       '23:00': 'porfos | chernobog_asc',
       '23:30': 'porfos !gpvp',
       '01:00': 'manticus_asc | ahzreil_asc'
@@ -766,8 +794,8 @@ const TL_T4_ROTATION = {
     '14': {
       '13:00': 'leviathan_asc | aridus_asc',
       '16:00': 'manticus_asc | malakar_asc',
-      '20:30': 'pakilo_naru_asc !gpvp',
-      '22:00': 'pakilo_naru_asc | kowazan_asc',
+      '20:30': 'exodus !gpvp',
+      '22:00': 'pakilo_naru_asc | exodus',
       '23:00': 'leviathan_asc | talus_asc',
       '23:30': 'leviathan_asc !gpvp',
       '01:00': 'manticus_asc | grand_aelon_asc'

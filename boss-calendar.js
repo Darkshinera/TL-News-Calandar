@@ -761,12 +761,6 @@ class TLBossCalendar {
     return name;
   }
 
-  formatBossEmbedMedia(imageUrl) {
-    if (!imageUrl) return {};
-    // Rendu en miniature compacte dans le coin supérieur droit (format officiel Discord)
-    return { thumbnail: { url: imageUrl } };
-  }
-
   updateHidePastButtonUI(btn) {
     if (!btn) return;
     if (this.hidePastEvents) {
@@ -1121,7 +1115,9 @@ class TLBossCalendar {
               title: `⏰ ${slot.timeSlot} — ${shortName}`,
               description: `**${pvpBadge}**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
               color: color,
-              ...this.formatBossEmbedMedia(b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png')
+              thumbnail: {
+                url: b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png'
+              }
             });
           });
         });
@@ -1137,8 +1133,6 @@ class TLBossCalendar {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            username: 'Throne & Liberty — Archbosses',
-            avatar_url: 'https://thronewatch.app/assets/icons/bosses/queen-bellandir-asc.png',
             content: content,
             embeds: dayEmbeds
           })
@@ -1209,7 +1203,9 @@ class TLBossCalendar {
         title: `⏰ ${nextArchEvent.timeSlot} — ${shortName}`,
         description: `**${pvpBadge}**\n└ Spawn : <t:${sec}:R>${widthSpacer}`,
         color: color,
-        ...this.formatBossEmbedMedia(b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png')
+        thumbnail: {
+          url: b.icon || 'https://thronewatch.app/assets/icons/bosses/giant-cordy-asc.png'
+        }
       };
     });
 
@@ -1220,8 +1216,6 @@ class TLBossCalendar {
     }
 
     const payload = {
-      username: 'Throne & Liberty — Archbosses',
-      avatar_url: 'https://thronewatch.app/assets/icons/bosses/queen-bellandir-asc.png',
       content: content,
       embeds: embeds
     };
