@@ -941,6 +941,56 @@ body {
   color: #fff;
 }
 
+.dynamic-chips-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.boss-chip-pill.chip-dynamic {
+  background: rgba(135, 82, 255, 0.18);
+  border-color: rgba(135, 82, 255, 0.55);
+  color: #f1e9ff;
+  box-shadow: 0 0 10px rgba(135, 82, 255, 0.2);
+}
+
+.boss-chip-pill.chip-dynamic:hover {
+  background: rgba(135, 82, 255, 0.3);
+  border-color: #a855f7;
+}
+
+.boss-chip-pill.chip-dynamic .chip-remove-btn {
+  font-size: 0.72rem;
+  margin-left: 4px;
+  color: #d8b4fe;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.boss-chip-pill.chip-dynamic:hover .chip-remove-btn {
+  color: #f87171;
+  transform: scale(1.2);
+}
+
+.boss-chip-pill.chip-clear {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.boss-chip-pill.chip-clear:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+}
+
 /* ==========================================================================
    2-WEEKS MINIMIZED GRID SECTION
    ========================================================================== */

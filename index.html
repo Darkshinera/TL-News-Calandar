@@ -133,9 +133,9 @@
       <!-- Ligne de filtre par Événement / Boss Spécifique ("Voir QUE tel event") -->
       <div class="specific-boss-row">
         <div class="specific-boss-title">
-          <i class="fa-solid fa-filter"></i> <span>Voir un boss / event précis :</span>
+          <i class="fa-solid fa-filter"></i> <span>Filtrer par boss (multi-sélection) :</span>
         </div>
-        <div class="specific-boss-chips">
+        <div class="specific-boss-chips" id="specific-boss-chips-container">
           <button class="boss-chip-pill active" data-boss-filter="all">Tous</button>
           <button class="boss-chip-pill chip-arch" data-boss-filter="giant_cordy_asc">
             <i class="fa-solid fa-crown"></i> Cordy
@@ -159,9 +159,12 @@
             <i class="fa-solid fa-water"></i> Baleine
           </button>
 
+          <!-- Badges des boss sélectionnés dynamiquement via la liste déroulante -->
+          <div id="dynamic-boss-chips" class="dynamic-chips-wrapper"></div>
+
           <div class="boss-dropdown-wrapper">
-            <select id="select-specific-boss" class="boss-select-dropdown" title="Choisir n'importe quel boss régulier T4">
-              <option value="">Autre boss T4...</option>
+            <select id="select-specific-boss" class="boss-select-dropdown" title="Ajouter un boss régulier T4 à la sélection">
+              <option value="">+ Ajouter un boss T4...</option>
               <option value="adentus_asc">Adentus</option>
               <option value="ahzreil_asc">Ahzreil</option>
               <option value="aridus_asc">Aridus</option>
@@ -186,6 +189,10 @@
               <option value="thuban">Thuban</option>
             </select>
           </div>
+
+          <button id="btn-clear-boss-filters" class="boss-chip-pill chip-clear" style="display: none;" title="Effacer tous les filtres de boss">
+            <i class="fa-solid fa-rotate-left"></i> Effacer (<span id="boss-filter-count">0</span>)
+          </button>
         </div>
       </div>
     </section>

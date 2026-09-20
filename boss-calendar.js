@@ -11,6 +11,7 @@ class TLBossCalendar {
     this.calendarView = localStorage.getItem('tl_calendar_view') || 'day';
     this.quinzaineView = 'current'; // 'current' (A) ou 'next' (B)
     this.specificBossFilter = 'all';
+    this.selectedBossFilters = new Set(); // Multi-sélection de boss
     this.includeRegularIn2Weeks = false;
     this.webhookArchUrl = localStorage.getItem('tl_discord_webhook_arch') || localStorage.getItem('tl_discord_webhook_url') || '';
     this.webhookNormalUrl = localStorage.getItem('tl_discord_webhook_normal') || '';
@@ -125,43 +126,8 @@ class TLBossCalendar {
       });
     }
 
-    // Sélecteur de Boss / Événement spécifique ("Voir que tel event")
-    const bossChips = document.querySelectorAll('.boss-chip-pill');
-    const bossSelect = document.getElementById('select-specific-boss');
-    bossChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        bossChips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        this.specificBossFilter = chip.dataset.bossFilter || 'all';
-        if (bossSelect) bossSelect.value = '';
-        if (this.calendarView === '2weeks') {
-          this.render2WeeksView();
-        } else {
-          this.renderTimeline();
-        }
-        this.updateDiscordPreview();
-      });
-    });
-
-    if (bossSelect) {
-      bossSelect.addEventListener('change', (e) => {
-        const val = e.target.value;
-        bossChips.forEach(c => c.classList.remove('active'));
-        if (val) {
-          this.specificBossFilter = val;
-        } else {
-          this.specificBossFilter = 'all';
-          const allChip = document.querySelector('.boss-chip-pill[data-boss-filter="all"]');
-          if (allChip) allChip.classList.add('active');
-        }
-        if (this.calendarView === '2weeks') {
-          this.render2WeeksView();
-        } else {
-          this.renderTimeline();
-        }
-        this.updateDiscordPreview();
-      });
-    }
+    // Sélecteur de Boss / Événement spécifique (Multi-sélection)
+    this.bindBossFilterEvents();
 
     // Option inclure les boss réguliers en vue 2 semaines
     const chkRegular = document.getElementById('chk-include-regular-2w');
@@ -345,6 +311,197 @@ class TLBossCalendar {
     }
   }
 
+  bindBossFilterEvents() {
+    // Boutons de filtres fixes (Cordy, Tevent, Ramux, etc.)
+    const bossChips = document.querySelectorAll('.boss-chip-pill:not(#btn-clear-boss-filters)');
+    bossChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const filterKey = chip.dataset.bossFilter;
+        if (!filterKey) return;
+        this.toggleBossFilter(filterKey, chip);
+      });
+    });
+
+    // Menu déroulant pour ajouter un autre boss
+    const bossSelect = document.getElementById('select-specific-boss');
+    if (bossSelect) {
+      bossSelect.addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (!val) return;
+        this.addBossFilterFromDropdown(val);
+      });
+    }
+
+    // Bouton pour effacer/réinitialiser la multi-sélection
+    const btnClear = document.getElementById('btn-clear-boss-filters');
+    if (btnClear) {
+      btnClear.addEventListener('click', () => {
+        this.clearBossFilters();
+      });
+    }
+  }
+
+  toggleBossFilter(filterKey, chipEl = null) {
+    if (filterKey === 'all') {
+      this.clearBossFilters();
+      return;
+    }
+
+    if (this.selectedBossFilters.has(filterKey)) {
+      this.selectedBossFilters.delete(filterKey);
+      if (chipEl) chipEl.classList.remove('active');
+    } else {
+      this.selectedBossFilters.add(filterKey);
+      if (chipEl) chipEl.classList.add('active');
+    }
+
+    this.updateBossFiltersUI();
+    this.refreshViews();
+  }
+
+  addBossFilterFromDropdown(bossId) {
+    if (!bossId) return;
+
+    if (!this.selectedBossFilters.has(bossId)) {
+      this.selectedBossFilters.add(bossId);
+      const meta = TL_BOSS_CATALOG[bossId] || { name: bossId };
+      this.showToast(`🔍 ${meta.displayName || meta.name} ajouté aux filtres`);
+    }
+
+    this.updateBossFiltersUI();
+    this.refreshViews();
+  }
+
+  removeBossFilter(bossId) {
+    if (this.selectedBossFilters.has(bossId)) {
+      this.selectedBossFilters.delete(bossId);
+      const meta = TL_BOSS_CATALOG[bossId] || { name: bossId };
+      this.showToast(`Retiré : ${meta.displayName || meta.name}`);
+    }
+
+    this.updateBossFiltersUI();
+    this.refreshViews();
+  }
+
+  clearBossFilters() {
+    this.selectedBossFilters.clear();
+    this.updateBossFiltersUI();
+    this.refreshViews();
+    this.showToast('✨ Tous les boss affichés');
+  }
+
+  updateBossFiltersUI() {
+    // Rétrocompatibilité avec specificBossFilter
+    if (this.selectedBossFilters.size === 0) {
+      this.specificBossFilter = 'all';
+    } else if (this.selectedBossFilters.size === 1) {
+      this.specificBossFilter = [...this.selectedBossFilters][0];
+    } else {
+      this.specificBossFilter = 'multiple';
+    }
+
+    // Gestion du bouton "Tous" et des chips statiques
+    const allChip = document.querySelector('.boss-chip-pill[data-boss-filter="all"]');
+    if (this.selectedBossFilters.size === 0) {
+      if (allChip) allChip.classList.add('active');
+      document.querySelectorAll('.boss-chip-pill:not([data-boss-filter="all"])').forEach(c => {
+        c.classList.remove('active');
+      });
+    } else {
+      if (allChip) allChip.classList.remove('active');
+      document.querySelectorAll('.boss-chip-pill:not([data-boss-filter="all"])').forEach(c => {
+        const filter = c.dataset.bossFilter;
+        if (filter && this.selectedBossFilters.has(filter)) {
+          c.classList.add('active');
+        } else if (filter) {
+          c.classList.remove('active');
+        }
+      });
+    }
+
+    // Gestion des badges créés dynamiquement pour les boss choisis dans le select
+    const staticKeys = new Set(['giant_cordy_asc', 'tevent_asc', 'ramux', 'deluzhnoa_asc', 'queen_bellandir_asc', 'siege_tax', 'gigantrite']);
+    const dynamicKeys = [...this.selectedBossFilters].filter(k => !staticKeys.has(k));
+    const dynContainer = document.getElementById('dynamic-boss-chips');
+    if (dynContainer) {
+      dynContainer.innerHTML = dynamicKeys.map(k => {
+        const meta = TL_BOSS_CATALOG[k] || { displayName: k, name: k, icon: '' };
+        const shortName = meta.displayName || meta.name || k;
+        return `
+          <button type="button" class="boss-chip-pill active chip-dynamic" data-dynamic-boss="${k}" title="Cliquer pour retirer ${shortName} du filtre">
+            ${meta.icon ? `<img src="${meta.icon}" alt="" style="width:16px;height:16px;object-fit:contain;vertical-align:middle;border-radius:50%;margin-right:2px;" onerror="this.style.display='none'">` : ''}
+            <span>${shortName}</span>
+            <i class="fa-solid fa-xmark chip-remove-btn" aria-hidden="true"></i>
+          </button>
+        `;
+      }).join('');
+
+      dynContainer.querySelectorAll('[data-dynamic-boss]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const bossKey = btn.dataset.dynamicBoss;
+          this.removeBossFilter(bossKey);
+        });
+      });
+    }
+
+    // Bouton de réinitialisation avec compteur
+    const btnClear = document.getElementById('btn-clear-boss-filters');
+    const countSpan = document.getElementById('boss-filter-count');
+    if (btnClear && countSpan) {
+      if (this.selectedBossFilters.size > 0) {
+        btnClear.style.display = 'inline-flex';
+        countSpan.textContent = this.selectedBossFilters.size;
+      } else {
+        btnClear.style.display = 'none';
+        countSpan.textContent = '0';
+      }
+    }
+
+    // Reset du select dropdown
+    const bossSelect = document.getElementById('select-specific-boss');
+    if (bossSelect) {
+      bossSelect.value = '';
+    }
+  }
+
+  refreshViews() {
+    if (this.calendarView === '2weeks') {
+      this.render2WeeksView();
+    } else {
+      this.renderTimeline();
+    }
+    this.updateDiscordPreview();
+  }
+
+  itemMatchesBossFilter(item, filterKey) {
+    if (!item) return false;
+    const target = (filterKey || '').toLowerCase();
+    const id = (item.id || '').toLowerCase();
+    const name = (item.name || '').toLowerCase();
+    if (target === 'siege_tax') {
+      return id.includes('tax') || id.includes('siege') || name.includes('siège') || name.includes('tax');
+    }
+    if (target === 'gigantrite') {
+      return id.includes('gigantrite') || id.includes('whale') || name.includes('baleine');
+    }
+    if (target.includes('cordy')) {
+      return id.includes('cordy');
+    }
+    if (target.includes('tevent')) {
+      return id.includes('tevent');
+    }
+    if (target.includes('ramux')) {
+      return id.includes('ramux');
+    }
+    if (target.includes('deluzhnoa') || target.includes('delu')) {
+      return id.includes('deluzhnoa') || id.includes('delu');
+    }
+    if (target.includes('bellandir') || target.includes('balandir') || target.includes('belandir')) {
+      return id.includes('bellandir') || id.includes('balandir');
+    }
+    return id === target || id.startsWith(target.replace('_asc', ''));
+  }
+
   startLiveCountdown() {
     if (this.countdownInterval) clearInterval(this.countdownInterval);
 
@@ -467,42 +624,22 @@ class TLBossCalendar {
       })).filter(ev => ev.items.length > 0);
     }
 
-    // 2. Filtre par boss / événement spécifique ("Voir QUE tel event")
-    if (this.specificBossFilter && this.specificBossFilter !== 'all') {
-      const target = this.specificBossFilter.toLowerCase();
+    // 2. Filtre par boss / événement spécifique (Multi-sélection)
+    if (this.selectedBossFilters && this.selectedBossFilters.size > 0) {
       res = res.map(ev => ({
         ...ev,
         items: ev.items.filter(it => {
-          const id = (it.id || '').toLowerCase();
-          const name = (it.name || '').toLowerCase();
-          if (target === 'siege_tax') {
-            return id.includes('tax') || id.includes('siege') || name.includes('siège') || name.includes('tax');
+          for (const target of this.selectedBossFilters) {
+            if (this.itemMatchesBossFilter(it, target)) return true;
           }
-          if (target === 'gigantrite') {
-            return id.includes('gigantrite') || id.includes('whale') || name.includes('baleine');
-          }
-          if (target.includes('cordy')) {
-            return id.includes('cordy');
-          }
-          if (target.includes('tevent')) {
-            return id.includes('tevent');
-          }
-          if (target.includes('ramux')) {
-            return id.includes('ramux');
-          }
-          if (target.includes('deluzhnoa') || target.includes('delu')) {
-            return id.includes('deluzhnoa') || id.includes('delu');
-          }
-          if (target.includes('bellandir') || target.includes('balandir') || target.includes('belandir')) {
-            return id.includes('bellandir') || id.includes('balandir');
-          }
-          return id === target || id.startsWith(target.replace('_asc', ''));
+          return false;
         })
       })).filter(ev => ev.items.length > 0);
     }
 
     // 3. Mode vue 2 semaines : masquer les boss réguliers par défaut si l'option n'est pas cochée et aucun boss spécifique demandé
-    if (is2WeeksView && !this.includeRegularIn2Weeks && this.specificBossFilter === 'all' && this.activeFilter === 'all') {
+    const hasBossSelection = this.selectedBossFilters && this.selectedBossFilters.size > 0;
+    if (is2WeeksView && !this.includeRegularIn2Weeks && !hasBossSelection && this.activeFilter === 'all') {
       res = res.map(ev => ({
         ...ev,
         items: ev.items.filter(it => it.archBoss || it.isPvP || it.isWorldEvent || (it.id && (it.id.includes('tax') || it.id.includes('siege'))))

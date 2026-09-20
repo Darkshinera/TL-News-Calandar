@@ -579,7 +579,7 @@ const TL_BOSS_CATALOG = {
     name: 'Pierre de Faille (Riftstone)',
     displayName: 'Riftstone PvP',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/whale.png',
+    icon: 'https://thronewatch.app/assets/icons/events/riftstone.png',
     fallbackIcon: 'fa-gem',
     color: '#9b59b6',
     isPvP: true
@@ -589,7 +589,7 @@ const TL_BOSS_CATALOG = {
     name: 'Pierre de Bénédiction (Boonstone)',
     displayName: 'Boonstone PvP',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/whale.png',
+    icon: 'https://thronewatch.app/assets/icons/events/boonstone.png',
     fallbackIcon: 'fa-shield',
     color: '#27ae60',
     isPvP: true
@@ -599,7 +599,7 @@ const TL_BOSS_CATALOG = {
     name: 'Siège du Château (Stonegard)',
     displayName: 'Castle Siege',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/whale.png',
+    icon: 'https://thronewatch.app/assets/icons/events/siege.png',
     fallbackIcon: 'fa-chess-rook',
     color: '#e74c3c',
     isPvP: true
@@ -609,7 +609,7 @@ const TL_BOSS_CATALOG = {
     name: 'Convoi de la Taxe',
     displayName: 'Tax Delivery',
     type: 'Guild PvP',
-    icon: 'https://thronewatch.app/assets/icons/events/whale.png',
+    icon: 'https://thronewatch.app/assets/icons/events/tax.png',
     fallbackIcon: 'fa-coins',
     color: '#f1c40f',
     isPvP: true
@@ -665,7 +665,14 @@ const TL_BOSS_ALIASES = {
   'grim_turg': 'grimturg',
   'exodus': 'exodus',
   'exo': 'exodus',
-  'exavis': 'exodus'
+  'exavis': 'exodus',
+  'siege': 'siege',
+  'castle_siege': 'siege',
+  'tax': 'tax',
+  'tax_delivery': 'tax',
+  'tax_event': 'tax',
+  'riftstone': 'riftstone',
+  'boonstone': 'boonstone'
 };
 
 // Rotation T4 - 14 Jours (Week A / Week B)
