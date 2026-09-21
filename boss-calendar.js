@@ -541,11 +541,41 @@ class TLBossCalendar {
     const target = (filterKey || '').toLowerCase();
     const id = (item.id || '').toLowerCase();
     const name = (item.name || '').toLowerCase();
+    if (target === 'coop_events') {
+      return item.isCoop || item.pvpLabel === 'Co-op';
+    }
+    if (target === 'dynamic_events') {
+      return !!item.isDynamicEvent || item.type === 'Dynamic Event' || id.includes('peipor') || id.includes('tree') || id.includes('obsidian') || id.includes('blizzard') || id.includes('worst') || id.includes('fire') || id.includes('mushroom');
+    }
     if (target === 'siege_tax') {
       return id.includes('tax') || id.includes('siege') || name.includes('siège') || name.includes('tax');
     }
     if (target === 'gigantrite') {
       return id.includes('gigantrite') || id.includes('whale') || name.includes('baleine');
+    }
+    if (target === 'whale') {
+      return id.includes('whale') || name.includes('baleine');
+    }
+    if (target.includes('fire') || target.includes('festival_of_fire')) {
+      return id.includes('fire') || name.includes('feu');
+    }
+    if (target.includes('mushroom') || target.includes('blood_mushroom')) {
+      return id.includes('mushroom') || name.includes('champignon');
+    }
+    if (target.includes('peipor')) {
+      return id.includes('peipor');
+    }
+    if (target.includes('tree') || target.includes('passage')) {
+      return id.includes('tree') || id.includes('passage') || name.includes('arbre');
+    }
+    if (target.includes('obsidian')) {
+      return id.includes('obsidian') || name.includes('obsidienne');
+    }
+    if (target.includes('blizzard')) {
+      return id.includes('blizzard');
+    }
+    if (target.includes('worst') || target.includes('prevent') || target.includes('best_way')) {
+      return id.includes('worst') || id.includes('prevent') || id.includes('best_way') || name.includes('pire');
     }
     if (target.includes('cordy')) {
       return id.includes('cordy');
@@ -664,11 +694,11 @@ class TLBossCalendar {
   filterEvents(events, is2WeeksView = false) {
     let res = events;
 
-    // 1. Filtre thématique principal (all, pve, pvp, arch, world)
+    // 1. Filtre thématique principal (all, pve, pvp, arch, events, coop, world)
     if (this.activeFilter === 'pve') {
       res = res.map(ev => ({
         ...ev,
-        items: ev.items.filter(it => !it.isPvP && !it.isWorldEvent)
+        items: ev.items.filter(it => !it.isPvP && !it.isWorldEvent && !it.isDynamicEvent && !it.isTerritoryEvent && !it.isCoop)
       })).filter(ev => ev.items.length > 0);
     } else if (this.activeFilter === 'pvp') {
       res = res.map(ev => ({
@@ -680,10 +710,22 @@ class TLBossCalendar {
         ...ev,
         items: ev.items.filter(it => it.archBoss)
       })).filter(ev => ev.items.length > 0);
+    } else if (this.activeFilter === 'events') {
+      // Uniquement les événements NON-BOSS (dynamiques, mondiaux, territoriaux)
+      res = res.map(ev => ({
+        ...ev,
+        items: ev.items.filter(it => it.isDynamicEvent || it.isWorldEvent || it.isTerritoryEvent || it.type === 'Dynamic Event' || it.type === 'World Event' || it.type === 'Guild PvP')
+      })).filter(ev => ev.items.length > 0);
+    } else if (this.activeFilter === 'coop') {
+      // Uniquement les événements Co-op
+      res = res.map(ev => ({
+        ...ev,
+        items: ev.items.filter(it => it.isCoop || it.pvpLabel === 'Co-op')
+      })).filter(ev => ev.items.length > 0);
     } else if (this.activeFilter === 'world') {
       res = res.map(ev => ({
         ...ev,
-        items: ev.items.filter(it => it.isWorldEvent || it.id === 'gigantrite')
+        items: ev.items.filter(it => it.isWorldEvent || it.id === 'gigantrite' || it.id === 'whale')
       })).filter(ev => ev.items.length > 0);
     }
 
@@ -812,11 +854,13 @@ class TLBossCalendar {
           chipsHtml = filteredEvents.map(ev => {
             const timeSlot = ev.timeSlot;
             return ev.items.map(b => {
+              const isCoop = b.isCoop || b.pvpLabel === 'Co-op';
+              const isDomPvp = b.isDomPvp || b.pvpLabel === 'Dom PvP';
               const isGuildPvp = b.isGuildPvp || (b.pvpLabel && b.pvpLabel.toLowerCase().includes('guild'));
               const shortName = this.getBossShortName(b);
-              const pvpClass = b.isPvP ? 'is-pvp' : 'is-pve';
-              const badgeClass = isGuildPvp ? 'mini-badge-guild' : (b.isPvP ? 'mini-badge-pvp' : 'mini-badge-pve');
-              const badgeText = isGuildPvp ? 'Guilde' : (b.isPvP ? 'PvP' : 'Peace');
+              const pvpClass = isCoop ? 'is-coop' : (b.isPvP ? 'is-pvp' : 'is-pve');
+              const badgeClass = isCoop ? 'mini-badge-coop' : (isGuildPvp ? 'mini-badge-guild' : (isDomPvp ? 'mini-badge-dom' : (b.isPvP ? 'mini-badge-pvp' : 'mini-badge-peace')));
+              const badgeText = isCoop ? 'Co-op' : (isGuildPvp ? 'Guilde' : (isDomPvp ? 'Dom PvP' : (b.isPvP ? 'PvP' : 'Peace')));
 
               return `
                 <div class="mini-event-chip ${pvpClass} ${b.archBoss ? 'is-arch' : ''}" title="${b.name} (${timeSlot} - ${badgeText})">
@@ -1029,12 +1073,29 @@ class TLBossCalendar {
         const isArch = !!item.archBoss;
         const isAscended = !!item.ascended;
         const isPvP = !!item.isPvP;
+        const isCoop = item.isCoop || item.pvpLabel === 'Co-op';
+        const isPeace = item.isPeace || item.pvpLabel === 'Peace';
+        const isDomPvp = item.isDomPvp || item.pvpLabel === 'Dom PvP';
+        const isGuildPvp = item.isGuildPvp || (item.pvpLabel && item.pvpLabel.toLowerCase().includes('guild'));
+        const isDynamic = !!item.isDynamicEvent;
         const shortName = this.getBossShortName(item);
         const isAlertActive = activeAlerts.has(item.id);
-        const isGuildPvp = item.isGuildPvp || (item.pvpLabel && item.pvpLabel.toLowerCase().includes('guild'));
+
+        let cardPvpClass = 'is-pve';
+        if (isCoop) cardPvpClass = 'is-coop';
+        else if (isGuildPvp) cardPvpClass = 'is-guild-pvp';
+        else if (isDomPvp) cardPvpClass = 'is-dom-pvp';
+        else if (isPvP) cardPvpClass = 'is-pvp';
+        else if (isPeace) cardPvpClass = 'is-peace';
+
+        let tagClass = 'tag-peace';
+        if (isCoop) tagClass = 'tag-coop';
+        else if (isGuildPvp) tagClass = 'tag-guild-pvp';
+        else if (isDomPvp) tagClass = 'tag-dom-pvp';
+        else if (isPvP) tagClass = 'tag-pvp';
 
         return `
-          <div class="boss-card-pill ${isArch ? 'is-arch' : ''} ${isAscended ? 'is-ascended' : ''} ${isPvP ? 'is-pvp' : 'is-pve'}" data-boss-id="${item.id}" title="${item.name} - Cliquez pour voir les détails">
+          <div class="boss-card-pill ${isArch ? 'is-arch' : ''} ${isAscended ? 'is-ascended' : ''} ${cardPvpClass} ${isDynamic ? 'is-dynamic-event' : ''}" data-boss-id="${item.id}" title="${item.name} - Cliquez pour voir les détails">
             <!-- 3D Boss Artwork Frame with pop-out relief -->
             <div class="boss-chip-art-shell">
               <img src="${item.icon}" alt="${item.name}" class="boss-chip-art" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src=getBossFallbackDataUri('${item.name}', '${item.color}')">
@@ -1049,11 +1110,10 @@ class TLBossCalendar {
               <div class="boss-chip-title-row">
                 <span class="boss-chip-name">${shortName}</span>
               </div>
-              ${isPvP ? `
-                <div class="boss-chip-tag-row">
-                  <span class="boss-chip-pvp-tag ${isGuildPvp ? 'tag-guild-pvp' : ''}">${isGuildPvp ? 'Guild PvP' : (item.pvpLabel || 'PvP')}</span>
-                </div>
-              ` : ''}
+              <div class="boss-chip-tag-row">
+                <span class="boss-chip-pvp-tag ${tagClass}">${item.pvpLabel || (isCoop ? 'Co-op' : (isPvP ? 'PvP' : 'Peace'))}</span>
+                ${isDynamic ? '<span class="boss-chip-pvp-tag tag-dynamic">Dynamique</span>' : ''}
+              </div>
             </div>
 
             <button class="boss-chip-bell-btn ${isAlertActive ? 'active' : ''}" data-boss-id="${item.id}" data-boss-name="${shortName}" title="${isAlertActive ? 'Désactiver' : 'Activer'} notification pour ${shortName}" aria-label="Notification pour ${shortName}">

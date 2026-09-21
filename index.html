@@ -123,6 +123,8 @@
           <button class="filter-pill" data-filter="pve"><i class="fa-solid fa-shield-halved"></i> Boss PvE (Peace)</button>
           <button class="filter-pill" data-filter="pvp"><i class="fa-solid fa-swords"></i> Boss & Zones PvP</button>
           <button class="filter-pill" data-filter="arch"><i class="fa-solid fa-crown"></i> Archbosses</button>
+          <button class="filter-pill" data-filter="events"><i class="fa-solid fa-calendar-check"></i> Événements (Non-Boss)</button>
+          <button class="filter-pill" data-filter="coop"><i class="fa-solid fa-handshake-simple"></i> Évents Co-op</button>
           <button class="filter-pill" data-filter="world"><i class="fa-solid fa-water"></i> Baleine Céleste (Gigantrite)</button>
           <button id="btn-toggle-hide-past" class="filter-pill toggle-past-pill" title="Masquer les événements passés de la journée">
             <i class="fa-solid fa-eye-slash"></i> <span id="label-hide-past">Masquer passés</span>
@@ -133,7 +135,7 @@
       <!-- Ligne de filtre par Événement / Boss Spécifique ("Voir QUE tel event") -->
       <div class="specific-boss-row">
         <div class="specific-boss-title">
-          <i class="fa-solid fa-filter"></i> <span>Filtrer par boss (multi-sélection) :</span>
+          <i class="fa-solid fa-filter"></i> <span>Filtrer par boss ou event (multi-sélection) :</span>
         </div>
         <div class="specific-boss-chips" id="specific-boss-chips-container">
           <button class="boss-chip-pill active" data-boss-filter="all">Tous</button>
@@ -152,6 +154,12 @@
           <button class="boss-chip-pill chip-arch" data-boss-filter="queen_bellandir_asc">
             <i class="fa-solid fa-crown"></i> Bellandir
           </button>
+          <button class="boss-chip-pill chip-coop" data-boss-filter="coop_events" title="Tous les événements Co-op">
+            <i class="fa-solid fa-handshake-simple"></i> Co-op
+          </button>
+          <button class="boss-chip-pill chip-dynamic-event" data-boss-filter="dynamic_events" title="Tous les événements dynamiques">
+            <i class="fa-solid fa-bolt"></i> Évents Dynamiques
+          </button>
           <button class="boss-chip-pill chip-event" data-boss-filter="siege_tax">
             <i class="fa-solid fa-shield-halved"></i> Siège & Taxe
           </button>
@@ -163,30 +171,45 @@
           <div id="dynamic-boss-chips" class="dynamic-chips-wrapper"></div>
 
           <div class="boss-dropdown-wrapper">
-            <select id="select-specific-boss" class="boss-select-dropdown" title="Ajouter un boss régulier T4 à la sélection">
-              <option value="">+ Ajouter un boss T4...</option>
-              <option value="adentus_asc">Adentus</option>
-              <option value="ahzreil_asc">Ahzreil</option>
-              <option value="aridus_asc">Aridus</option>
-              <option value="chernobog_asc">Chernobog</option>
-              <option value="cornelius_asc">Cornelius</option>
-              <option value="daigon_asc">Daigon</option>
-              <option value="excavator9_asc">Excavator-9</option>
-              <option value="exodus">Exodus</option>
-              <option value="grand_aelon_asc">Grand Aelon</option>
-              <option value="grimturg">Grimturg</option>
-              <option value="junobote_asc">Junobote</option>
-              <option value="kowazan_asc">Kowazan</option>
-              <option value="leviathan_asc">Leviathan</option>
-              <option value="malakar_asc">Malakar</option>
-              <option value="manticus_asc">Manticus</option>
-              <option value="minezerok_asc">Minezerok</option>
-              <option value="morokai_asc">Morokai</option>
-              <option value="nirma_asc">Nirma</option>
-              <option value="pakilo_naru_asc">Pakilo Naru</option>
-              <option value="porfos">Porfos</option>
-              <option value="talus_asc">Talus</option>
-              <option value="thuban">Thuban</option>
+            <select id="select-specific-boss" class="boss-select-dropdown" title="Ajouter un boss ou un événement à la sélection">
+              <option value="">+ Ajouter un boss ou un événement...</option>
+              <optgroup label="👑 Boss Réguliers T4">
+                <option value="adentus_asc">Adentus</option>
+                <option value="ahzreil_asc">Ahzreil</option>
+                <option value="aridus_asc">Aridus</option>
+                <option value="chernobog_asc">Chernobog</option>
+                <option value="cornelius_asc">Cornelius</option>
+                <option value="daigon_asc">Daigon</option>
+                <option value="excavator9_asc">Excavator-9</option>
+                <option value="exodus">Exodus</option>
+                <option value="grand_aelon_asc">Grand Aelon</option>
+                <option value="grimturg">Grimturg</option>
+                <option value="junobote_asc">Junobote</option>
+                <option value="kowazan_asc">Kowazan</option>
+                <option value="leviathan_asc">Leviathan</option>
+                <option value="malakar_asc">Malakar</option>
+                <option value="manticus_asc">Manticus</option>
+                <option value="minezerok_asc">Minezerok</option>
+                <option value="morokai_asc">Morokai</option>
+                <option value="nirma_asc">Nirma</option>
+                <option value="pakilo_naru_asc">Pakilo Naru</option>
+                <option value="porfos">Porfos</option>
+                <option value="talus_asc">Talus</option>
+                <option value="thuban">Thuban</option>
+              </optgroup>
+              <optgroup label="🎪 Événements Dynamiques & Co-op">
+                <option value="festival_of_fire">Festival du Feu (Co-op)</option>
+                <option value="peipor_harvest_festival">Festival de Peipor</option>
+                <option value="passage_ceremony_of_the_great_tree">Passage du Grand Arbre</option>
+                <option value="obsidian_acquisition_operation">Opération Obsidienne</option>
+                <option value="blizzard_seal">Sceau du Blizzard</option>
+                <option value="best_way_to_prevent_the_worst">Prévenir le Pire</option>
+                <option value="blood_mushroom_gathering">Champignons de Sang</option>
+                <option value="whale">Vol de la Baleine (Co-op)</option>
+                <option value="inter_server_boonstone">IS Bénédiction</option>
+                <option value="inter_server_riftstone">IS Faille</option>
+                <option value="inter_server_siege">IS Siège</option>
+              </optgroup>
             </select>
           </div>
 
@@ -208,8 +231,10 @@
             <span>Inclure aussi les boss réguliers (13h, 16h...)</span>
           </label>
           <span class="timeline-legend">
-            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #38ef7d;"></i> PvE (Peace)</span>
-            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #ef4444;"></i> PvP / Conflit</span>
+            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #64748b;"></i> Peace</span>
+            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #3b82f6;"></i> Co-op</span>
+            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #22c55e;"></i> Guild PvP</span>
+            <span class="legend-item"><i class="fa-solid fa-circle" style="color: #0d9488;"></i> Dom PvP</span>
             <span class="legend-item"><i class="fa-solid fa-crown" style="color: #f59e0b;"></i> Archboss</span>
           </span>
         </div>

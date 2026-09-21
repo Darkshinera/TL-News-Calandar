@@ -38,13 +38,22 @@ const ICONS = [
   'assets/icons/bosses/tevent-asc.png',
   'assets/icons/bosses/ramux.png',
 
-  // Événements
+  // Événements & Co-op
   'assets/icons/events/gigantrite.png',
   'assets/icons/events/whale.png',
   'assets/icons/events/riftstone.png',
   'assets/icons/events/boonstone.png',
   'assets/icons/events/siege.png',
   'assets/icons/events/tax.png',
+  'assets/icons/events/best-way-to-prevent-the-worst.png',
+  'assets/icons/events/peipor-harvest-festival.png',
+  'assets/icons/events/passage-ceremony-of-the-great-tree.png',
+  'assets/icons/events/obsidian-acquisition-operation.png',
+  'assets/icons/events/blizzard-seal.png',
+  'assets/icons/events/festival-of-fire.svg',
+  'assets/icons/events/blood-mushroom-gathering.svg',
+  'assets/icons/events/inter-server-boonstone.png',
+  'assets/icons/events/inter-server-riftstone.png',
 
   // UI
   'assets/ui/favicon.png'

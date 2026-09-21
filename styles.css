@@ -917,6 +917,14 @@ body {
   color: #38bdf8;
 }
 
+.boss-chip-pill.chip-coop i {
+  color: #38bdf8;
+}
+
+.boss-chip-pill.chip-dynamic-event i {
+  color: #34d399;
+}
+
 .boss-dropdown-wrapper {
   position: relative;
   display: inline-flex;
@@ -1569,6 +1577,73 @@ body {
 
 .boss-chip-pvp-tag.tag-guild-pvp {
   background: #22c55e;
+}
+
+.boss-chip-pvp-tag.tag-dom-pvp {
+  background: #0d9488;
+}
+
+.boss-chip-pvp-tag.tag-coop {
+  background: #2563eb;
+}
+
+.boss-chip-pvp-tag.tag-peace {
+  background: #475569;
+}
+
+.boss-chip-pvp-tag.tag-dynamic {
+  background: rgba(139, 92, 246, 0.35);
+  border: 1px solid rgba(168, 85, 247, 0.6);
+  color: #e9d5ff;
+}
+
+/* 2-Weeks mini badges */
+.mini-badge-coop {
+  background: rgba(37, 99, 235, 0.25);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.45);
+}
+
+.mini-badge-dom {
+  background: rgba(13, 148, 136, 0.25);
+  color: #5eead4;
+  border: 1px solid rgba(20, 184, 166, 0.45);
+}
+
+.mini-badge-peace {
+  background: rgba(100, 116, 139, 0.25);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+/* Boss card styling by event mode */
+.boss-card-pill.is-coop {
+  border-color: rgba(59, 130, 246, 0.45);
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.35) 0%, rgba(15, 23, 42, 0.6) 100%);
+}
+
+.boss-card-pill.is-coop:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.boss-card-pill.is-peace {
+  border-color: rgba(148, 163, 184, 0.25);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+}
+
+.boss-card-pill.is-dom-pvp {
+  border-color: rgba(20, 184, 166, 0.45);
+  background: linear-gradient(135deg, rgba(19, 78, 74, 0.35) 0%, rgba(15, 23, 42, 0.6) 100%);
+}
+
+.boss-card-pill.is-dom-pvp:hover {
+  border-color: #14b8a6;
+  box-shadow: 0 4px 20px rgba(20, 184, 166, 0.3);
+}
+
+.boss-card-pill.is-dynamic-event {
+  box-shadow: inset 0 0 12px rgba(139, 92, 246, 0.1);
 }
 
 /* Bell Notification Button */

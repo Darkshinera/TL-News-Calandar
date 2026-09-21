@@ -1,6 +1,6 @@
 @echo off
 set "msg=%~1"
-if "%msg%"=="" set "msg=feat: icones des boss en local assets/ et mise a jour Discord"
+if "%msg%"=="" set "msg=feat: integration des nouveaux evenements ThroneWatch (co-op, peace, events dynamiques), nouveaux filtres et icones"
 
 git add .
 git commit -m "%msg%"

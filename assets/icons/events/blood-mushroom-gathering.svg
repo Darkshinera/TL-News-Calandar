@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Blood Mushroom Gathering">
+  <defs>
+    <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5a68"/>
+      <stop offset="1" stop-color="#8e102d"/>
+    </linearGradient>
+  </defs>
+  <path fill="#190d25" stroke="#c74a70" stroke-width="3" d="M48 3 87 25v46L48 93 9 71V25z"/>
+  <path fill="#d9b79b" stroke="#6f2634" stroke-width="3" d="M41 52h15c-3 9-2 18 5 27H34c8-9 10-18 7-27z"/>
+  <path fill="url(#cap)" stroke="#ff8790" stroke-width="3" d="M18 54c2-23 15-37 30-37s28 14 30 37c-10 4-20 5-30 5s-20-1-30-5z"/>
+  <circle cx="35" cy="40" r="5" fill="#ffd7c5"/>
+  <circle cx="56" cy="31" r="4" fill="#ffd7c5"/>
+  <circle cx="62" cy="47" r="3" fill="#ffd7c5"/>
+</svg>

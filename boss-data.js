@@ -571,8 +571,11 @@ const TL_BOSS_CATALOG = {
     type: 'World Event',
     icon: 'assets/icons/events/whale.png',
     fallbackIcon: 'fa-water',
-    color: '#00c6ff',
-    isWorldEvent: true
+    color: '#38bdf8',
+    isWorldEvent: true,
+    isCoop: true,
+    defaultPvpKind: 'coop',
+    details: 'Healing Touch for Divine Beasts (Événement Co-op)'
   },
   riftstone: {
     id: 'riftstone',
@@ -582,7 +585,8 @@ const TL_BOSS_CATALOG = {
     icon: 'assets/icons/events/riftstone.png',
     fallbackIcon: 'fa-gem',
     color: '#9b59b6',
-    isPvP: true
+    isPvP: true,
+    isTerritoryEvent: true
   },
   boonstone: {
     id: 'boonstone',
@@ -592,7 +596,30 @@ const TL_BOSS_CATALOG = {
     icon: 'assets/icons/events/boonstone.png',
     fallbackIcon: 'fa-shield',
     color: '#27ae60',
-    isPvP: true
+    isPvP: true,
+    isTerritoryEvent: true
+  },
+  inter_server_boonstone: {
+    id: 'inter_server_boonstone',
+    name: 'Pierre de Bénédiction Inter-Serveur',
+    displayName: 'IS Boonstone',
+    type: 'Guild PvP',
+    icon: 'assets/icons/events/inter-server-boonstone.png',
+    fallbackIcon: 'fa-shield-halved',
+    color: '#22c55e',
+    isPvP: true,
+    isTerritoryEvent: true
+  },
+  inter_server_riftstone: {
+    id: 'inter_server_riftstone',
+    name: 'Pierre de Faille Inter-Serveur',
+    displayName: 'IS Riftstone',
+    type: 'Guild PvP',
+    icon: 'assets/icons/events/inter-server-riftstone.png',
+    fallbackIcon: 'fa-gem',
+    color: '#a855f7',
+    isPvP: true,
+    isTerritoryEvent: true
   },
   siege: {
     id: 'siege',
@@ -602,7 +629,19 @@ const TL_BOSS_CATALOG = {
     icon: 'assets/icons/events/siege.png',
     fallbackIcon: 'fa-chess-rook',
     color: '#e74c3c',
-    isPvP: true
+    isPvP: true,
+    isTerritoryEvent: true
+  },
+  inter_server_siege: {
+    id: 'inter_server_siege',
+    name: 'Siège Inter-Serveur (Stonegard)',
+    displayName: 'IS Siege',
+    type: 'Guild PvP',
+    icon: 'assets/icons/events/siege.png',
+    fallbackIcon: 'fa-chess-rook',
+    color: '#dc2626',
+    isPvP: true,
+    isTerritoryEvent: true
   },
   tax: {
     id: 'tax',
@@ -612,7 +651,88 @@ const TL_BOSS_CATALOG = {
     icon: 'assets/icons/events/tax.png',
     fallbackIcon: 'fa-coins',
     color: '#f1c40f',
-    isPvP: true
+    isPvP: true,
+    isTerritoryEvent: true
+  },
+
+  // Événements Dynamiques & Spéciaux (ThroneWatch)
+  best_way_to_prevent_the_worst: {
+    id: 'best_way_to_prevent_the_worst',
+    name: 'Le meilleur moyen de prévenir le pire',
+    displayName: 'Prévenir le Pire',
+    type: 'Dynamic Event',
+    icon: 'assets/icons/events/best-way-to-prevent-the-worst.png',
+    fallbackIcon: 'fa-crosshairs',
+    color: '#3c9c8c',
+    isDynamicEvent: true,
+    defaultPvpKind: 'peace'
+  },
+  peipor_harvest_festival: {
+    id: 'peipor_harvest_festival',
+    name: 'Festival de la récolte de Peipor',
+    displayName: 'Peipor Harvest',
+    type: 'Dynamic Event',
+    icon: 'assets/icons/events/peipor-harvest-festival.png',
+    fallbackIcon: 'fa-wheat-awn',
+    color: '#f59e0b',
+    isDynamicEvent: true,
+    defaultPvpKind: 'peace'
+  },
+  passage_ceremony_of_the_great_tree: {
+    id: 'passage_ceremony_of_the_great_tree',
+    name: 'Cérémonie du passage du Grand Arbre',
+    displayName: 'Passage Grand Arbre',
+    type: 'Dynamic Event',
+    icon: 'assets/icons/events/passage-ceremony-of-the-great-tree.png',
+    fallbackIcon: 'fa-tree',
+    color: '#10b981',
+    isDynamicEvent: true,
+    defaultPvpKind: 'peace'
+  },
+  obsidian_acquisition_operation: {
+    id: 'obsidian_acquisition_operation',
+    name: "Opération d'acquisition d'obsidienne",
+    displayName: 'Obsidienne',
+    type: 'Dynamic Event',
+    icon: 'assets/icons/events/obsidian-acquisition-operation.png',
+    fallbackIcon: 'fa-cube',
+    color: '#8b5cf6',
+    isDynamicEvent: true,
+    defaultPvpKind: 'peace'
+  },
+  blizzard_seal: {
+    id: 'blizzard_seal',
+    name: 'Sceau du Blizzard',
+    displayName: 'Sceau Blizzard',
+    type: 'Dynamic Event',
+    icon: 'assets/icons/events/blizzard-seal.png',
+    fallbackIcon: 'fa-snowflake',
+    color: '#06b6d4',
+    isDynamicEvent: true,
+    defaultPvpKind: 'peace'
+  },
+  festival_of_fire: {
+    id: 'festival_of_fire',
+    name: 'Festival du Feu (Festival of Fire)',
+    displayName: 'Festival du Feu',
+    type: 'Dynamic Event',
+    icon: 'assets/icons/events/festival-of-fire.svg',
+    fallbackIcon: 'fa-fire',
+    color: '#f97316',
+    isDynamicEvent: true,
+    isCoop: true,
+    defaultPvpKind: 'coop'
+  },
+  blood_mushroom_gathering: {
+    id: 'blood_mushroom_gathering',
+    name: 'Récolte des champignons de sang',
+    displayName: 'Champignons de Sang',
+    type: 'Dynamic Event',
+    icon: 'assets/icons/events/blood-mushroom-gathering.svg',
+    fallbackIcon: 'fa-cannabis',
+    color: '#ec4899',
+    isDynamicEvent: true,
+    defaultPvpKind: 'peace'
   }
 };
 
@@ -672,7 +792,58 @@ const TL_BOSS_ALIASES = {
   'tax_delivery': 'tax',
   'tax_event': 'tax',
   'riftstone': 'riftstone',
-  'boonstone': 'boonstone'
+  'boonstone': 'boonstone',
+  // Nouveaux alias événements
+  'whale': 'whale',
+  'whale_event': 'whale',
+  'healing_touch_for_divine_beasts': 'whale',
+  'best_way_to_prevent_the_worst': 'best_way_to_prevent_the_worst',
+  'best_way': 'best_way_to_prevent_the_worst',
+  'prevent_the_worst': 'best_way_to_prevent_the_worst',
+  'prevent_worst': 'best_way_to_prevent_the_worst',
+  'bwpw': 'best_way_to_prevent_the_worst',
+  'peipor_harvest_festival': 'peipor_harvest_festival',
+  'peipor_harvest': 'peipor_harvest_festival',
+  'peipor': 'peipor_harvest_festival',
+  'harvest_festival': 'peipor_harvest_festival',
+  'phf': 'peipor_harvest_festival',
+  'the_passage_ceremony_of_the_great_tree': 'passage_ceremony_of_the_great_tree',
+  'passage_ceremony_of_the_great_tree': 'passage_ceremony_of_the_great_tree',
+  'passage_ceremony': 'passage_ceremony_of_the_great_tree',
+  'great_tree': 'passage_ceremony_of_the_great_tree',
+  'tree': 'passage_ceremony_of_the_great_tree',
+  'tree_ceremony': 'passage_ceremony_of_the_great_tree',
+  'passage': 'passage_ceremony_of_the_great_tree',
+  'pcgt': 'passage_ceremony_of_the_great_tree',
+  'obsidian_acquisition_operation': 'obsidian_acquisition_operation',
+  'obsidian_acquisition': 'obsidian_acquisition_operation',
+  'obsidian_operation': 'obsidian_acquisition_operation',
+  'obsidian_op': 'obsidian_acquisition_operation',
+  'obsidian': 'obsidian_acquisition_operation',
+  'acquisition_op': 'obsidian_acquisition_operation',
+  'oao': 'obsidian_acquisition_operation',
+  'blizzard_seal': 'blizzard_seal',
+  'blizzard': 'blizzard_seal',
+  'seal': 'blizzard_seal',
+  'bs': 'blizzard_seal',
+  'blizz': 'blizzard_seal',
+  'festival_of_fire': 'festival_of_fire',
+  'fire_festival': 'festival_of_fire',
+  'festival_fire': 'festival_of_fire',
+  'fire': 'festival_of_fire',
+  'blood_mushroom_gathering': 'blood_mushroom_gathering',
+  'blood_mushroom': 'blood_mushroom_gathering',
+  'mushroom_gathering': 'blood_mushroom_gathering',
+  'mushroom': 'blood_mushroom_gathering',
+  'inter_server_boonstone': 'inter_server_boonstone',
+  'is_boonstone': 'inter_server_boonstone',
+  'interserver_boonstone': 'inter_server_boonstone',
+  'inter_server_riftstone': 'inter_server_riftstone',
+  'is_riftstone': 'inter_server_riftstone',
+  'interserver_riftstone': 'inter_server_riftstone',
+  'inter_server_siege': 'inter_server_siege',
+  'is_siege': 'inter_server_siege',
+  'interserver_siege': 'inter_server_siege'
 };
 
 // Rotation T4 - 14 Jours (Week A / Week B)
@@ -810,8 +981,209 @@ const TL_T4_ROTATION = {
   },
   // Spawns quotidiens récurrents Gigantrite
   dailyGigantrite: ['02:00', '05:00', '08:00', '11:00', '14:00', '17:00'],
-  // Archbosses & Événements spécifiques confirmés (options de surcharge manuelle par date si nécessaire)
-  dateExtras: {}
+  // Événements dynamiques et territoriaux récurrents (Cycle 14 jours issu de ThroneWatch)
+  extras: {
+    '1': [
+      { time: '03:00', items: 'peipor !dpvp' },
+      { time: '06:00', items: 'best_way !gpvp | blizzard !dpvp' },
+      { time: '09:00', items: 'tree !gpvp' },
+      { time: '12:00', items: 'whale' },
+      { time: '15:00', items: 'tree !dpvp' },
+      { time: '19:00', items: 'whale' },
+      { time: '22:00', items: 'best_way !gpvp' },
+      { time: '00:00', items: 'tree !gpvp' }
+    ],
+    '2': [
+      { time: '03:00', items: 'whale | peipor !gpvp' },
+      { time: '06:00', items: 'obsidian !gpvp' },
+      { time: '09:00', items: 'whale | obsidian !dpvp' },
+      { time: '12:00', items: 'peipor !dpvp' },
+      { time: '15:00', items: 'best_way !dpvp | blizzard !gpvp' },
+      { time: '20:00', items: 'peipor !gpvp | tree !dpvp' },
+      { time: '21:00', items: 'boonstone !gpvp' },
+      { time: '21:30', items: 'inter_server_boonstone !gpvp' },
+      { time: '00:00', items: 'best_way !dpvp | blizzard !gpvp' }
+    ],
+    '3': [
+      { time: '03:00', items: 'whale' },
+      { time: '06:00', items: 'tree !gpvp' },
+      { time: '09:00', items: 'whale | obsidian !dpvp' },
+      { time: '12:00', items: 'peipor !dpvp' },
+      { time: '15:00', items: 'best_way !gpvp | blizzard !dpvp' },
+      { time: '20:00', items: 'whale' },
+      { time: '21:00', items: 'riftstone !gpvp' },
+      { time: '21:30', items: 'inter_server_riftstone !gpvp' },
+      { time: '00:00', items: 'tree !dpvp' }
+    ],
+    '4': [
+      { time: '03:00', items: 'whale' },
+      { time: '06:00', items: 'best_way !gpvp' },
+      { time: '09:00', items: 'tree !gpvp' },
+      { time: '12:00', items: 'whale | peipor !gpvp' },
+      { time: '15:00', items: 'obsidian !gpvp' },
+      { time: '19:00', items: 'whale | obsidian !dpvp' },
+      { time: '20:00', items: 'inter_server_siege !gpvp' },
+      { time: '22:00', items: 'peipor !dpvp' },
+      { time: '00:00', items: 'best_way !dpvp | blizzard !gpvp' }
+    ],
+    '5': [
+      { time: '03:00', items: 'obsidian !gpvp | blizzard !dpvp' },
+      { time: '06:00', items: 'peipor !gpvp | tree !dpvp' },
+      { time: '09:00', items: 'best_way !gpvp | blizzard !dpvp' },
+      { time: '12:00', items: 'whale' },
+      { time: '15:00', items: 'tree !gpvp' },
+      { time: '19:00', items: 'whale | obsidian !dpvp' },
+      { time: '21:00', items: 'boonstone !gpvp' },
+      { time: '22:00', items: 'peipor !dpvp' }
+    ],
+    '6': [
+      { time: '03:00', items: 'tree !gpvp' },
+      { time: '06:00', items: 'whale' },
+      { time: '09:00', items: 'tree !dpvp' },
+      { time: '12:00', items: 'whale' },
+      { time: '15:00', items: 'best_way !gpvp' },
+      { time: '20:00', items: 'whale | peipor !gpvp' },
+      { time: '21:00', items: 'riftstone !gpvp' },
+      { time: '00:00', items: 'obsidian !gpvp' }
+    ],
+    '7': [
+      { time: '03:00', items: 'whale' },
+      { time: '06:00', items: 'peipor !dpvp' },
+      { time: '09:00', items: 'best_way !dpvp | blizzard !gpvp' },
+      { time: '12:00', items: 'obsidian !gpvp | blizzard !dpvp' },
+      { time: '15:00', items: 'peipor !gpvp | tree !dpvp' },
+      { time: '20:00', items: 'whale' },
+      { time: '00:00', items: 'tree !gpvp' }
+    ],
+    '8': [
+      { time: '03:00', items: 'whale | obsidian !dpvp' },
+      { time: '06:00', items: 'peipor !dpvp' },
+      { time: '09:00', items: 'whale | best_way !gpvp | blizzard !dpvp' },
+      { time: '12:00', items: 'tree !gpvp' },
+      { time: '15:00', items: 'whale' },
+      { time: '19:00', items: 'tree !dpvp' },
+      { time: '22:00', items: 'whale' },
+      { time: '00:00', items: 'best_way !gpvp' }
+    ],
+    '9': [
+      { time: '06:00', items: 'whale | peipor !gpvp' },
+      { time: '09:00', items: 'best_way !gpvp | blizzard !dpvp' },
+      { time: '12:00', items: 'whale | obsidian !dpvp' },
+      { time: '20:00', items: 'obsidian !gpvp | blizzard !dpvp' },
+      { time: '21:00', items: 'boonstone !gpvp' },
+      { time: '21:30', items: 'inter_server_boonstone !gpvp' },
+      { time: '00:00', items: 'peipor !gpvp | tree !dpvp' }
+    ],
+    '10': [
+      { time: '06:00', items: 'whale' },
+      { time: '09:00', items: 'tree !gpvp' },
+      { time: '12:00', items: 'whale | obsidian !dpvp' },
+      { time: '15:00', items: 'peipor !dpvp' },
+      { time: '20:00', items: 'tree !gpvp' },
+      { time: '21:00', items: 'riftstone !gpvp' },
+      { time: '21:30', items: 'inter_server_riftstone !gpvp' },
+      { time: '00:00', items: 'whale' }
+    ],
+    '11': [
+      { time: '03:00', items: 'tree !dpvp' },
+      { time: '06:00', items: 'whale' },
+      { time: '09:00', items: 'best_way !gpvp' },
+      { time: '12:00', items: 'tree !gpvp' },
+      { time: '15:00', items: 'whale | peipor !gpvp' },
+      { time: '19:00', items: 'obsidian !gpvp' },
+      { time: '19:30', items: 'tax !gpvp' },
+      { time: '20:00', items: 'siege !gpvp' },
+      { time: '22:00', items: 'whale' },
+      { time: '00:00', items: 'obsidian !gpvp | blizzard !dpvp' }
+    ],
+    '12': [
+      { time: '03:00', items: 'peipor !gpvp' },
+      { time: '06:00', items: 'best_way !dpvp | blizzard !gpvp' },
+      { time: '09:00', items: 'whale' },
+      { time: '12:00', items: 'tree !gpvp' },
+      { time: '15:00', items: 'whale | obsidian !dpvp' },
+      { time: '19:00', items: 'peipor !dpvp' },
+      { time: '21:00', items: 'boonstone !gpvp' },
+      { time: '22:00', items: 'best_way !gpvp | blizzard !dpvp' },
+      { time: '00:00', items: 'tree !gpvp' }
+    ],
+    '13': [
+      { time: '03:00', items: 'whale' },
+      { time: '06:00', items: 'tree !dpvp' },
+      { time: '09:00', items: 'whale' },
+      { time: '21:00', items: 'riftstone !gpvp' },
+      { time: '00:00', items: 'whale' }
+    ],
+    '14': [
+      { time: '00:00', items: 'whale | obsidian !dpvp' },
+      { time: '03:00', items: 'peipor !dpvp' },
+      { time: '06:00', items: 'best_way !dpvp | blizzard !gpvp' },
+      { time: '09:00', items: 'obsidian !gpvp | blizzard !dpvp' },
+      { time: '12:00', items: 'peipor !gpvp | tree !dpvp' },
+      { time: '15:00', items: 'best_way !dpvp | blizzard !gpvp' },
+      { time: '20:00', items: 'tree !gpvp' }
+    ]
+  },
+  // Archbosses & Événements spécifiques confirmés (ThroneWatch)
+  dateExtras: {
+    '2026-09-20': [
+      { time: '00:00', items: 'peipor !peace | obsidian !gpvp | whale !coop' }
+    ],
+    '2026-09-21': [
+      { time: '12:00', items: 'tree !dpvp | blizzard !peace' },
+      { time: '18:00', items: 'peipor !gpvp | tree !peace | festival_of_fire !coop | blood_mushroom_gathering !peace' },
+      { time: '20:00', items: 'daigon_asc | kowazan_asc' },
+      { time: '20:30', items: 'daigon_asc !gpvp' }
+    ],
+    '2026-09-22': [
+      { time: '19:00', items: 'queen_bellandir_asc' },
+      { time: '22:00', items: 'deluzhnoa_asc !pvp | queen_bellandir_asc' }
+    ],
+    '2026-09-23': [
+      { time: '19:00', items: 'ramux | queen_bellandir_asc !pvp' },
+      { time: '22:00', items: 'ramux' }
+    ],
+    '2026-09-25': [
+      { time: '19:00', items: 'tevent_asc' },
+      { time: '22:00', items: 'giant_cordy_asc !pvp | tevent_asc' }
+    ],
+    '2026-09-26': [
+      { time: '19:00', items: 'ramux !pvp' },
+      { time: '22:00', items: 'ramux | deluzhnoa_asc' }
+    ],
+    '2026-09-29': [
+      { time: '19:00', items: 'deluzhnoa_asc | queen_bellandir_asc !pvp' },
+      { time: '22:00', items: 'deluzhnoa_asc' }
+    ],
+    '2026-09-30': [
+      { time: '19:00', items: 'ramux' },
+      { time: '22:00', items: 'ramux !pvp | queen_bellandir_asc' }
+    ],
+    '2026-10-02': [
+      { time: '19:00', items: 'giant_cordy_asc | tevent_asc !pvp' },
+      { time: '22:00', items: 'giant_cordy_asc' }
+    ],
+    '2026-10-03': [
+      { time: '19:00', items: 'ramux' },
+      { time: '22:00', items: 'ramux | giant_cordy_asc !pvp' }
+    ],
+    '2026-10-06': [
+      { time: '19:00', items: 'deluzhnoa_asc !pvp | queen_bellandir_asc' },
+      { time: '22:00', items: 'queen_bellandir_asc' }
+    ],
+    '2026-10-07': [
+      { time: '19:00', items: 'ramux' },
+      { time: '22:00', items: 'ramux | tevent_asc !pvp' }
+    ],
+    '2026-10-09': [
+      { time: '19:00', items: 'giant_cordy_asc !pvp | tevent_asc' },
+      { time: '22:00', items: 'tevent_asc' }
+    ],
+    '2026-10-10': [
+      { time: '19:00', items: 'ramux' },
+      { time: '22:00', items: 'ramux !pvp | giant_cordy_asc' }
+    ]
+  }
 };
 
 /**
@@ -988,34 +1360,47 @@ const TL_ARCHBOSS_CYCLE_B = {
 };
 
 /**
- * Parse un élément de spawn brut (ex: "manticus_asc !gpvp", "giant_cordy_asc !pvp")
+ * Parse un élément de spawn brut (ex: "manticus_asc !gpvp", "giant_cordy_asc !pvp", "festival_of_fire !coop")
  */
 function parseScheduleItemToken(token) {
   let raw = String(token).trim();
-  const isGuildPvp = /!gpvp/i.test(raw);
-  const isDomPvp = /!dpvp/i.test(raw);
+  const isGuildPvp = /!(gpvp|guild)/i.test(raw);
+  const isDomPvp = /!(dpvp|dom|dominion)/i.test(raw);
+  const isCoopExplicit = /!(coop|co_op|co-op)/i.test(raw);
+  const isPeaceExplicit = /!peace/i.test(raw);
   const isPvpExplicit = /!pvp/i.test(raw);
-  raw = raw.replace(/!(pvp|gpvp|dpvp)/gi, '').trim();
+  raw = raw.replace(/!(pvp|gpvp|guild|dpvp|dom|dominion|coop|co_op|co-op|peace)/gi, '').trim();
   
-  const key = raw.toLowerCase().replace(/[^a-z0-9_]+/g, '_');
+  const key = raw.toLowerCase().replace(/[^a-z0-9_]+/g, '_').replace(/^_+|_+$/g, '');
   const resolvedKey = TL_BOSS_ALIASES[key] || key;
   const meta = TL_BOSS_CATALOG[resolvedKey] || {
     id: resolvedKey,
     name: raw,
     displayName: raw,
-    type: 'Boss',
-    fallbackIcon: 'fa-skull',
+    type: 'Event',
+    fallbackIcon: 'fa-calendar-check',
     color: '#a0aec0'
   };
 
-  const isPvP = isPvpExplicit || isGuildPvp || isDomPvp || !!meta.isPvP;
+  const isCoopFinal = isCoopExplicit || (!isGuildPvp && !isDomPvp && !isPvpExplicit && !isPeaceExplicit && (meta.isCoop || meta.defaultPvpKind === 'coop'));
+  const isPeaceFinal = isPeaceExplicit || (!isGuildPvp && !isDomPvp && !isPvpExplicit && !isCoopFinal && (meta.defaultPvpKind === 'peace' || (!meta.isPvP && !meta.archBoss)));
+  const isPvP = (isPvpExplicit || isGuildPvp || isDomPvp || (meta.isPvP && !isPeaceExplicit && !isCoopFinal)) && !isCoopFinal && !isPeaceFinal;
+
+  let pvpLabel = 'Peace';
+  if (isCoopFinal) pvpLabel = 'Co-op';
+  else if (isGuildPvp) pvpLabel = 'Guild PvP';
+  else if (isDomPvp) pvpLabel = 'Dom PvP';
+  else if (isPvP) pvpLabel = 'PvP';
+  else if (isPeaceFinal) pvpLabel = 'Peace';
 
   return {
     ...meta,
     isGuildPvp,
     isDomPvp,
+    isCoop: isCoopFinal,
+    isPeace: isPeaceFinal,
     isPvP,
-    pvpLabel: isGuildPvp ? 'Guild PvP' : isDomPvp ? 'Dom PvP' : (isPvP ? 'PvP' : 'Peace')
+    pvpLabel
   };
 }
 
@@ -1059,10 +1444,11 @@ function getEventsForDate(dateStr) {
     });
   }
 
-  // 3. Archboss & Événements spécifiques (calés sur le super-cycle de 28 jours : Quinzaine A / Quinzaine B)
+  // 3. Archboss, Événements Dynamiques & Extras Spécifiques
   const cycleInfo = getArchbossCycleInfo(dateStr);
   const currentArchbossSchedule = cycleInfo.isPhaseB ? TL_ARCHBOSS_CYCLE_B : TL_ARCHBOSS_CYCLE_A;
   const cycleExtras = currentArchbossSchedule[String(cycleInfo.rotationDay)] || [];
+  const dynamicExtras = (TL_T4_ROTATION.extras && TL_T4_ROTATION.extras[String(dayNum)]) || [];
   const specificExtras = (TL_T4_ROTATION.dateExtras && TL_T4_ROTATION.dateExtras[dateStr]) || [];
 
   // Dédupliquer les créneaux par heure (priorité aux spécifiques par date)
@@ -1078,6 +1464,12 @@ function getEventsForDate(dateStr) {
       allExtras.push(extra);
     }
   }
+  for (const extra of dynamicExtras) {
+    if (!seenTimes.has(extra.time)) {
+      seenTimes.add(extra.time);
+      allExtras.push(extra);
+    }
+  }
 
   for (const extra of allExtras) {
     const timestampMs = eventDateToTimestamp(dateStr, extra.time);
@@ -1086,6 +1478,14 @@ function getEventsForDate(dateStr) {
     
     const existing = events.find(e => Math.abs(e.timestampMs - timestampMs) < 60000);
     if (existing) {
+      // Si l'extra spécifique dateExtras définit des boss de terrain, il remplace les boss récurrents de ce créneau
+      const isFromSpecificDate = specificExtras.some(se => se.time === extra.time);
+      if (isFromSpecificDate) {
+        const hasSpecificBosses = items.some(b => !b.isDynamicEvent && !b.isWorldEvent && !b.isTerritoryEvent && !b.archBoss);
+        if (hasSpecificBosses) {
+          existing.items = existing.items.filter(b => b.isDynamicEvent || b.isWorldEvent || b.isTerritoryEvent || b.archBoss);
+        }
+      }
       existing.items.push(...items);
       existing.hasArch = existing.hasArch || items.some(b => b.archBoss);
       existing.hasPvP = existing.hasPvP || items.some(b => b.isPvP);
