@@ -1471,10 +1471,22 @@ function getEventsForDate(dateStr) {
     }
   }
 
+// Activer ou masquer les événements dynamiques (Peipor, Arbre, Blizzard, Obsidienne, etc.)
+// Désactivé par défaut car jugé non utile pour le calendrier des boss (conservé dans le code au cas où)
+const ENABLE_DYNAMIC_EVENTS = false;
+
   for (const extra of allExtras) {
     const timestampMs = eventDateToTimestamp(dateStr, extra.time);
     const tokens = extra.items.split('|').map(s => s.trim()).filter(Boolean);
-    const items = tokens.map(parseScheduleItemToken);
+    let items = tokens.map(parseScheduleItemToken);
+    
+    // Si les événements dynamiques sont désactivés, on retire ces éléments de l'affichage
+    if (!ENABLE_DYNAMIC_EVENTS) {
+      items = items.filter(b => !b.isDynamicEvent && b.type !== 'Dynamic Event');
+    }
+    if (items.length === 0) {
+      continue;
+    }
     
     const existing = events.find(e => Math.abs(e.timestampMs - timestampMs) < 60000);
     if (existing) {

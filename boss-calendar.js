@@ -545,6 +545,8 @@ class TLBossCalendar {
       return item.isCoop || item.pvpLabel === 'Co-op';
     }
     if (target === 'dynamic_events') {
+      // Les événements dynamiques sont masqués par défaut (ENABLE_DYNAMIC_EVENTS = false)
+      if (typeof ENABLE_DYNAMIC_EVENTS !== 'undefined' && !ENABLE_DYNAMIC_EVENTS) return false;
       return !!item.isDynamicEvent || item.type === 'Dynamic Event' || id.includes('peipor') || id.includes('tree') || id.includes('obsidian') || id.includes('blizzard') || id.includes('worst') || id.includes('fire') || id.includes('mushroom');
     }
     if (target === 'siege_tax') {
@@ -711,10 +713,15 @@ class TLBossCalendar {
         items: ev.items.filter(it => it.archBoss)
       })).filter(ev => ev.items.length > 0);
     } else if (this.activeFilter === 'events') {
-      // Uniquement les événements NON-BOSS (dynamiques, mondiaux, territoriaux)
+      // Uniquement les événements NON-BOSS (mondiaux, territoriaux, ou dynamiques si activés)
       res = res.map(ev => ({
         ...ev,
-        items: ev.items.filter(it => it.isDynamicEvent || it.isWorldEvent || it.isTerritoryEvent || it.type === 'Dynamic Event' || it.type === 'World Event' || it.type === 'Guild PvP')
+        items: ev.items.filter(it => {
+          if (typeof ENABLE_DYNAMIC_EVENTS !== 'undefined' && !ENABLE_DYNAMIC_EVENTS && (it.isDynamicEvent || it.type === 'Dynamic Event')) {
+            return false;
+          }
+          return it.isDynamicEvent || it.isWorldEvent || it.isTerritoryEvent || it.type === 'Dynamic Event' || it.type === 'World Event' || it.type === 'Guild PvP';
+        })
       })).filter(ev => ev.items.length > 0);
     } else if (this.activeFilter === 'coop') {
       // Uniquement les événements Co-op

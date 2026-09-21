@@ -157,7 +157,8 @@
           <button class="boss-chip-pill chip-coop" data-boss-filter="coop_events" title="Tous les événements Co-op">
             <i class="fa-solid fa-handshake-simple"></i> Co-op
           </button>
-          <button class="boss-chip-pill chip-dynamic-event" data-boss-filter="dynamic_events" title="Tous les événements dynamiques">
+          <!-- Filtre Évents Dynamiques masqué (conservé au cas où) -->
+          <button class="boss-chip-pill chip-dynamic-event" data-boss-filter="dynamic_events" style="display: none;" title="Tous les événements dynamiques">
             <i class="fa-solid fa-bolt"></i> Évents Dynamiques
           </button>
           <button class="boss-chip-pill chip-event" data-boss-filter="siege_tax">
@@ -197,7 +198,12 @@
                 <option value="talus_asc">Talus</option>
                 <option value="thuban">Thuban</option>
               </optgroup>
-              <optgroup label="🎪 Événements Dynamiques & Co-op">
+              <optgroup label="🏰 Événements Spéciaux & Co-op">
+                <option value="whale">Vol de la Baleine (Co-op)</option>
+                <option value="inter_server_boonstone">IS Bénédiction</option>
+                <option value="inter_server_riftstone">IS Faille</option>
+                <option value="inter_server_siege">IS Siège</option>
+                <!-- Événements dynamiques masqués (conservés au cas où)
                 <option value="festival_of_fire">Festival du Feu (Co-op)</option>
                 <option value="peipor_harvest_festival">Festival de Peipor</option>
                 <option value="passage_ceremony_of_the_great_tree">Passage du Grand Arbre</option>
@@ -205,10 +211,7 @@
                 <option value="blizzard_seal">Sceau du Blizzard</option>
                 <option value="best_way_to_prevent_the_worst">Prévenir le Pire</option>
                 <option value="blood_mushroom_gathering">Champignons de Sang</option>
-                <option value="whale">Vol de la Baleine (Co-op)</option>
-                <option value="inter_server_boonstone">IS Bénédiction</option>
-                <option value="inter_server_riftstone">IS Faille</option>
-                <option value="inter_server_siege">IS Siège</option>
+                -->
               </optgroup>
             </select>
           </div>
