@@ -48,6 +48,7 @@ if %errorlevel% equ 0 (
         "assets/icons/bosses/queen-bellandir-asc.png"
         "assets/icons/bosses/tevent-asc.png"
         "assets/icons/bosses/ramux.png"
+        "assets/icons/bosses/vegamor.png"
         "assets/icons/events/gigantrite.png"
         "assets/icons/events/whale.png"
         "assets/icons/events/riftstone.png"

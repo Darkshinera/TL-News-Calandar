@@ -552,6 +552,18 @@ const TL_BOSS_CATALOG = {
     archBoss: true,
     ascended: false
   },
+  vegamor: {
+    id: 'vegamor',
+    name: 'Vegamor (Archboss)',
+    displayName: 'Vegamor',
+    type: 'Demon',
+    food: 'Meat',
+    icon: 'assets/icons/bosses/vegamor.png',
+    fallbackIcon: 'fa-crown',
+    color: '#d63031',
+    archBoss: true,
+    ascended: false
+  },
 
   // Événements Mondiaux & PvP
   gigantrite: {
@@ -776,6 +788,8 @@ const TL_BOSS_ALIASES = {
   'tevent': 'tevent_asc',
   'tev_asc': 'tevent_asc',
   'ramux': 'ramux',
+  'vegamor': 'vegamor',
+  'vega': 'vegamor',
   'aelon': 'grand_aelon',
   'aelon_asc': 'grand_aelon_asc',
   'excavator': 'excavator9',
@@ -1151,10 +1165,6 @@ const TL_T4_ROTATION = {
       { time: '19:00', items: 'ramux !pvp' },
       { time: '22:00', items: 'ramux | deluzhnoa_asc' }
     ],
-    '2026-09-29': [
-      { time: '19:00', items: 'deluzhnoa_asc | queen_bellandir_asc !pvp' },
-      { time: '22:00', items: 'deluzhnoa_asc' }
-    ],
     '2026-09-30': [
       { time: '19:00', items: 'ramux' },
       { time: '22:00', items: 'ramux !pvp | queen_bellandir_asc' }
@@ -1166,10 +1176,6 @@ const TL_T4_ROTATION = {
     '2026-10-03': [
       { time: '19:00', items: 'ramux' },
       { time: '22:00', items: 'ramux | giant_cordy_asc !pvp' }
-    ],
-    '2026-10-06': [
-      { time: '19:00', items: 'deluzhnoa_asc !pvp | queen_bellandir_asc' },
-      { time: '22:00', items: 'queen_bellandir_asc' }
     ],
     '2026-10-07': [
       { time: '19:00', items: 'ramux' },
@@ -1267,8 +1273,8 @@ const TL_ARCHBOSS_CYCLE_A = {
   ],
   // Mardi Semaine 1
   '6': [
-    { time: '19:00', items: 'deluzhnoa_asc' },
-    { time: '22:00', items: 'deluzhnoa_asc | queen_bellandir_asc !pvp' }
+    { time: '19:00', items: 'deluzhnoa_asc | vegamor !gpvp' },
+    { time: '22:00', items: 'vegamor' }
   ],
   // Mercredi Semaine 1
   '7': [
@@ -1292,8 +1298,8 @@ const TL_ARCHBOSS_CYCLE_A = {
   ],
   // Mardi Semaine 2
   '13': [
-    { time: '19:00', items: 'queen_bellandir_asc' },
-    { time: '22:00', items: 'deluzhnoa_asc !pvp | queen_bellandir_asc' }
+    { time: '19:00', items: 'vegamor !gpvp | queen_bellandir_asc !peace' },
+    { time: '22:00', items: 'vegamor !peace' }
   ],
   // Mercredi Semaine 2
   '14': [
@@ -1324,8 +1330,8 @@ const TL_ARCHBOSS_CYCLE_B = {
   ],
   // Mardi Semaine 1
   '6': [
-    { time: '19:00', items: 'deluzhnoa_asc | queen_bellandir_asc !pvp' },
-    { time: '22:00', items: 'deluzhnoa_asc' }
+    { time: '19:00', items: 'deluzhnoa_asc !pvp | vegamor' },
+    { time: '22:00', items: 'vegamor !pvp' }
   ],
   // Mercredi Semaine 1
   '7': [
@@ -1349,8 +1355,8 @@ const TL_ARCHBOSS_CYCLE_B = {
   ],
   // Mardi Semaine 2
   '13': [
-    { time: '19:00', items: 'deluzhnoa_asc !pvp | queen_bellandir_asc' },
-    { time: '22:00', items: 'queen_bellandir_asc' }
+    { time: '19:00', items: 'vegamor | queen_bellandir_asc !pvp' },
+    { time: '22:00', items: 'vegamor !pvp' }
   ],
   // Mercredi Semaine 2
   '14': [

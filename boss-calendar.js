@@ -483,7 +483,7 @@ class TLBossCalendar {
     }
 
     // Gestion des badges créés dynamiquement pour les boss choisis dans le select
-    const staticKeys = new Set(['giant_cordy_asc', 'tevent_asc', 'ramux', 'deluzhnoa_asc', 'queen_bellandir_asc', 'siege_tax', 'gigantrite']);
+    const staticKeys = new Set(['vegamor', 'giant_cordy_asc', 'tevent_asc', 'ramux', 'deluzhnoa_asc', 'queen_bellandir_asc', 'siege_tax', 'gigantrite']);
     const dynamicKeys = [...this.selectedBossFilters].filter(k => !staticKeys.has(k));
     const dynContainer = document.getElementById('dynamic-boss-chips');
     if (dynContainer) {
@@ -584,6 +584,9 @@ class TLBossCalendar {
     }
     if (target.includes('tevent')) {
       return id.includes('tevent');
+    }
+    if (target.includes('vegamor') || target.includes('vega')) {
+      return id.includes('vegamor') || id.includes('vega') || name.includes('vegamor');
     }
     if (target.includes('ramux')) {
       return id.includes('ramux');

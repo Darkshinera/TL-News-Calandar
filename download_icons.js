@@ -37,6 +37,7 @@ const ICONS = [
   'assets/icons/bosses/queen-bellandir-asc.png',
   'assets/icons/bosses/tevent-asc.png',
   'assets/icons/bosses/ramux.png',
+  'assets/icons/bosses/vegamor.png',
 
   // Événements & Co-op
   'assets/icons/events/gigantrite.png',
