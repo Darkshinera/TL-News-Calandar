@@ -876,8 +876,8 @@ const TL_T4_ROTATION = {
       '01:00': 'manticus_asc | minezerok_asc'
     },
     '2': {
-      '13:00': 'porfos | grimturg',
-      '16:00': 'pakilo_naru_asc | grimturg',
+      '13:00': 'junobote_asc | porfos',
+      '16:00': 'pakilo_naru_asc | morokai_asc',
       '20:30': 'manticus_asc !gpvp',
       '22:00': 'manticus_asc | cornelius_asc',
       '23:00': 'thuban | adentus_asc',
@@ -886,20 +886,20 @@ const TL_T4_ROTATION = {
     },
     '3': {
       '13:00': 'leviathan_asc | exodus',
-      '16:00': 'thuban | exodus',
-      '20:30': 'grimturg !gpvp',
-      '22:00': 'daigon_asc | grimturg',
-      '23:00': 'porfos | kowazan_asc',
-      '23:30': 'porfos !gpvp',
+      '16:00': 'thuban | aridus_asc',
+      '20:30': 'porfos !gpvp',
+      '22:00': 'porfos | grimturg',
+      '23:00': 'daigon_asc | exodus',
+      '23:30': 'exodus !gpvp',
       '01:00': 'thuban | talus_asc'
     },
     '4': {
-      '13:00': 'daigon_asc | grand_aelon_asc',
+      '13:00': 'daigon_asc | grimturg',
       '16:00': 'porfos | adentus_asc',
-      '20:00': 'pakilo_naru_asc | exodus',
-      '20:30': 'exodus !gpvp',
-      '23:00': 'thuban | grimturg',
-      '23:30': 'thuban !gpvp',
+      '20:00': 'thuban | exodus',
+      '20:30': 'thuban !gpvp',
+      '23:00': 'pakilo_naru_asc | grimturg',
+      '23:30': 'grimturg !gpvp',
       '01:00': 'daigon_asc | excavator9_asc'
     },
     '5': {
@@ -907,13 +907,13 @@ const TL_T4_ROTATION = {
       '16:00': 'leviathan_asc | junobote_asc',
       '20:00': 'manticus_asc | morokai_asc',
       '20:30': 'manticus_asc !gpvp',
-      '23:00': 'daigon_asc | exodus',
+      '23:00': 'daigon_asc | cornelius_asc',
       '23:30': 'daigon_asc !gpvp',
       '01:00': 'pakilo_naru_asc | adentus_asc'
     },
     '6': {
       '13:00': 'porfos | chernobog_asc',
-      '16:00': 'daigon_asc | grimturg',
+      '16:00': 'daigon_asc | ahzreil_asc',
       '20:30': 'leviathan_asc !gpvp',
       '22:00': 'leviathan_asc | aridus_asc',
       '23:00': 'thuban | malakar_asc',
@@ -921,8 +921,8 @@ const TL_T4_ROTATION = {
       '01:00': 'pakilo_naru_asc | kowazan_asc'
     },
     '7': {
-      '13:00': 'manticus_asc | grimturg',
-      '16:00': 'leviathan_asc | exodus',
+      '13:00': 'manticus_asc | talus_asc',
+      '16:00': 'leviathan_asc | grand_aelon_asc',
       '20:30': 'manticus_asc !gpvp',
       '22:00': 'manticus_asc | adentus_asc',
       '23:00': 'pakilo_naru_asc | nirma_asc',
@@ -930,7 +930,7 @@ const TL_T4_ROTATION = {
       '01:00': 'porfos | ahzreil_asc'
     },
     '8': {
-      '13:00': 'pakilo_naru_asc | exodus',
+      '13:00': 'pakilo_naru_asc | excavator9_asc',
       '16:00': 'manticus_asc | minezerok_asc',
       '20:00': 'leviathan_asc | junobote_asc',
       '20:30': 'leviathan_asc !gpvp',
@@ -942,7 +942,7 @@ const TL_T4_ROTATION = {
       '13:00': 'thuban | adentus_asc',
       '16:00': 'leviathan_asc | chernobog_asc',
       '20:30': 'grimturg !gpvp',
-      '22:00': 'pakilo_naru_asc | grimturg',
+      '22:00': 'pakilo_naru_asc | ahzreil',
       '23:00': 'porfos | aridus_asc',
       '23:30': 'porfos !gpvp',
       '01:00': 'thuban | malakar_asc'
@@ -968,8 +968,8 @@ const TL_T4_ROTATION = {
     '12': {
       '13:00': 'pakilo_naru_asc | nirma_asc',
       '16:00': 'leviathan_asc | ahzreil_asc',
-      '20:00': 'daigon_asc | exodus',
-      '20:30': 'exodus !gpvp',
+      '20:00': 'daigon_asc | excavator9_asc',
+      '20:30': 'daigon_asc !gpvp',
       '23:00': 'manticus_asc | minezerok_asc',
       '23:30': 'manticus_asc !gpvp',
       '01:00': 'leviathan_asc | junobote_asc'
@@ -977,8 +977,8 @@ const TL_T4_ROTATION = {
     '13': {
       '13:00': 'thuban | morokai_asc',
       '16:00': 'daigon_asc | cornelius_asc',
-      '20:30': 'grimturg !gpvp',
-      '22:00': 'pakilo_naru_asc | grimturg',
+      '20:30': 'pakilo_naru_asc !gpvp',
+      '22:00': 'pakilo_naru_asc | adentus_asc',
       '23:00': 'porfos | chernobog_asc',
       '23:30': 'porfos !gpvp',
       '01:00': 'manticus_asc | ahzreil_asc'
@@ -986,8 +986,8 @@ const TL_T4_ROTATION = {
     '14': {
       '13:00': 'leviathan_asc | aridus_asc',
       '16:00': 'manticus_asc | malakar_asc',
-      '20:30': 'exodus !gpvp',
-      '22:00': 'pakilo_naru_asc | exodus',
+      '20:30': 'pakilo_naru_asc !gpvp',
+      '22:00': 'pakilo_naru_asc | kowazan_asc',
       '23:00': 'leviathan_asc | talus_asc',
       '23:30': 'leviathan_asc !gpvp',
       '01:00': 'manticus_asc | grand_aelon_asc'
@@ -1169,31 +1169,11 @@ const TL_T4_ROTATION = {
       { time: '19:00', items: 'ramux' },
       { time: '22:00', items: 'ramux !pvp | queen_bellandir_asc' }
     ],
-    '2026-10-02': [
-      { time: '19:00', items: 'giant_cordy_asc | tevent_asc !pvp' },
-      { time: '22:00', items: 'giant_cordy_asc' }
-    ],
-    '2026-10-03': [
-      { time: '19:00', items: 'ramux' },
-      { time: '22:00', items: 'ramux | giant_cordy_asc !pvp' }
-    ],
-    '2026-10-07': [
-      { time: '19:00', items: 'ramux' },
-      { time: '22:00', items: 'ramux | tevent_asc !pvp' }
-    ],
-    '2026-10-09': [
-      { time: '19:00', items: 'giant_cordy_asc !pvp | tevent_asc' },
-      { time: '22:00', items: 'tevent_asc' }
-    ],
-    '2026-10-10': [
-      { time: '19:00', items: 'ramux' },
-      { time: '22:00', items: 'ramux !pvp | giant_cordy_asc' }
-    ]
   }
 };
 
 /**
- * Calcul du jour de rotation T4 (1 à 14)
+ * Calcul du jour de rotation T4 des boss normaux (1 à 14)
  */
 function getRotationDay(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -1207,25 +1187,32 @@ function getRotationDay(dateStr) {
   return (((diffDays % cycle) + cycle) % cycle) + 1;
 }
 
+// Ancre officielle ThroneWatch du cycle indépendant de 28 jours des Archbosses
+const TL_ARCHBOSS_ANCHOR_DATE = '2026-10-01';
+const TL_ARCHBOSS_CYCLE_DAYS = 28;
+
 /**
- * Calcul du cycle complet de 28 jours (Quinzaine A / Quinzaine B)
- * Jours 0 à 13 = Quinzaine A
- * Jours 14 à 27 = Quinzaine B (Inversion des horaires PvP/PvE 19h <-> 22h)
+ * Calcul du cycle complet de 28 jours des Archbosses (Quinzaine A / Quinzaine B)
+ * Calé sur l'ancre officielle ThroneWatch du 1er Octobre 2026 (cycle indépendant de 28 jours)
+ * Jours 0 à 13 (Jours 1 à 14 du cycle) = Quinzaine A
+ * Jours 14 à 27 (Jours 15 à 28 du cycle) = Quinzaine B
  */
 function getArchbossCycleInfo(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
   const targetDate = new Date(y, m - 1, d);
-  const [ay, am, ad] = TL_T4_ROTATION.anchorDate.split('-').map(Number);
+  const [ay, am, ad] = TL_ARCHBOSS_ANCHOR_DATE.split('-').map(Number);
   const anchorDate = new Date(ay, am - 1, ad);
   
   const diffTime = targetDate.getTime() - anchorDate.getTime();
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   const superCycleDay = (((diffDays % 28) + 28) % 28); // 0..27
   const isPhaseB = superCycleDay >= 14;
-  const rotationDay = (superCycleDay % 14) + 1; // 1..14
+  const rotationDay = (superCycleDay % 14) + 1; // 1..14 (position dans la quinzaine)
+  const archbossDay28 = superCycleDay + 1; // 1..28 (jour absolu du cycle 28 jours)
   
   return {
     superCycleDay,
+    archbossDay28,
     isPhaseB,
     phaseName: isPhaseB ? 'Quinzaine B' : 'Quinzaine A',
     rotationDay
@@ -1251,117 +1238,97 @@ function eventDateToTimestamp(dateStr, timeStr) {
 }
 
 /**
- * Planning Archbosses - Quinzaine A (Cycle standard 14 jours)
+ * Planning Archbosses - Quinzaine A (Jours 1 à 14 du cycle 28 jours ThroneWatch)
  * Jour 1 = Jeudi S1, Jour 2 = Vendredi S1, Jour 3 = Samedi S1, etc.
  * Jour 8 = Jeudi S2, Jour 9 = Vendredi S2, etc.
  */
 const TL_ARCHBOSS_CYCLE_A = {
-  // Vendredi Semaine 1 (ex: 11 Septembre 2026)
+  // Vendredi Semaine 1 (Jour 2)
   '2': [
-    { time: '19:00', items: 'giant_cordy_asc !pvp | tevent_asc' },
-    { time: '22:00', items: 'tevent_asc' }
+    { time: '19:00', items: 'giant_cordy_asc | tevent_asc !gpvp' },
+    { time: '22:00', items: 'giant_cordy_asc' }
   ],
-  // Samedi Semaine 1 (ex: 12 Septembre 2026)
+  // Samedi Semaine 1 (Jour 3)
   '3': [
     { time: '19:00', items: 'ramux' },
-    { time: '22:00', items: 'ramux !pvp | giant_cordy_asc' }
+    { time: '22:00', items: 'ramux | giant_cordy_asc !gpvp' }
   ],
-  // Dimanche Semaine 1
-  '4': [
-    { time: '19:30', items: 'tax !gpvp' },
-    { time: '20:00', items: 'siege !gpvp' }
-  ],
-  // Mardi Semaine 1
+  // Mardi Semaine 1 (Jour 6)
   '6': [
-    { time: '19:00', items: 'deluzhnoa_asc | vegamor !gpvp' },
+    { time: '19:00', items: 'queen_bellandir_asc | vegamor !gpvp' },
     { time: '22:00', items: 'vegamor' }
   ],
-  // Mercredi Semaine 1
+  // Mercredi Semaine 1 (Jour 7)
   '7': [
-    { time: '19:00', items: 'ramux !pvp | tevent_asc' },
-    { time: '22:00', items: 'ramux' }
+    { time: '19:00', items: 'ramux' },
+    { time: '22:00', items: 'ramux | queen_bellandir_asc !gpvp' }
   ],
-  // Vendredi Semaine 2 (ex: 18 Septembre 2026)
+  // Vendredi Semaine 2 (Jour 9)
   '9': [
-    { time: '19:00', items: 'giant_cordy_asc' },
-    { time: '22:00', items: 'giant_cordy_asc | tevent_asc !pvp' }
+    { time: '19:00', items: 'tevent_asc | deluzhnoa_asc !gpvp' },
+    { time: '22:00', items: 'tevent_asc' }
   ],
-  // Samedi Semaine 2 (ex: 19 Septembre 2026)
+  // Samedi Semaine 2 (Jour 10)
   '10': [
-    { time: '19:00', items: 'ramux | deluzhnoa_asc !pvp' },
-    { time: '22:00', items: 'ramux' }
+    { time: '19:00', items: 'ramux' },
+    { time: '22:00', items: 'deluzhnoa_asc | ramux !gpvp' }
   ],
-  // Dimanche Semaine 2
-  '11': [
-    { time: '19:30', items: 'tax !gpvp' },
-    { time: '20:00', items: 'siege !gpvp' }
-  ],
-  // Mardi Semaine 2
+  // Mardi Semaine 2 (Jour 13)
   '13': [
-    { time: '19:00', items: 'vegamor !gpvp | queen_bellandir_asc !peace' },
-    { time: '22:00', items: 'vegamor !peace' }
+    { time: '19:00', items: 'vegamor' },
+    { time: '22:00', items: 'deluzhnoa_asc | vegamor !gpvp' }
   ],
-  // Mercredi Semaine 2
+  // Mercredi Semaine 2 (Jour 14)
   '14': [
-    { time: '19:00', items: 'ramux | queen_bellandir_asc !pvp' },
+    { time: '19:00', items: 'queen_bellandir_asc | ramux !gpvp' },
     { time: '22:00', items: 'ramux' }
   ]
 };
 
 /**
- * Planning Archbosses - Quinzaine B (Prochaine quinzaine : inversion 19h <-> 22h du PvP)
- * Règle : le boss PvP de 19h passe à 22h, et si un boss n'apparaît qu'une fois il change d'horaire
+ * Planning Archbosses - Quinzaine B (Jours 15 à 28 du cycle 28 jours ThroneWatch)
+ * En Quinzaine B : inversion des créneaux PvP/Peace et des boss
  */
 const TL_ARCHBOSS_CYCLE_B = {
-  // Vendredi Semaine 1
+  // Vendredi Semaine 1 (Jour 16 du cycle 28 jours -> J2 Quinzaine B)
   '2': [
-    { time: '19:00', items: 'tevent_asc' },
-    { time: '22:00', items: 'giant_cordy_asc !pvp | tevent_asc' }
+    { time: '19:00', items: 'giant_cordy_asc' },
+    { time: '22:00', items: 'giant_cordy_asc | tevent_asc !gpvp' }
   ],
-  // Samedi Semaine 1
+  // Samedi Semaine 1 (Jour 17 du cycle 28 jours -> J3 Quinzaine B)
   '3': [
-    { time: '19:00', items: 'ramux !pvp' },
-    { time: '22:00', items: 'ramux | deluzhnoa_asc' }
+    { time: '19:00', items: 'ramux | deluzhnoa_asc !gpvp' },
+    { time: '22:00', items: 'ramux' }
   ],
-  // Dimanche Semaine 1
-  '4': [
-    { time: '19:30', items: 'tax !gpvp' },
-    { time: '20:00', items: 'siege !gpvp' }
-  ],
-  // Mardi Semaine 1
+  // Mardi Semaine 1 (Jour 20 du cycle 28 jours -> J6 Quinzaine B)
   '6': [
-    { time: '19:00', items: 'deluzhnoa_asc !pvp | vegamor' },
-    { time: '22:00', items: 'vegamor !pvp' }
+    { time: '19:00', items: 'vegamor' },
+    { time: '22:00', items: 'queen_bellandir_asc | vegamor !gpvp' }
   ],
-  // Mercredi Semaine 1
+  // Mercredi Semaine 1 (Jour 21 du cycle 28 jours -> J7 Quinzaine B)
   '7': [
-    { time: '19:00', items: 'ramux' },
-    { time: '22:00', items: 'ramux !pvp | queen_bellandir_asc' }
+    { time: '19:00', items: 'ramux | queen_bellandir_asc !gpvp' },
+    { time: '22:00', items: 'ramux' }
   ],
-  // Vendredi Semaine 2
+  // Vendredi Semaine 2 (Jour 23 du cycle 28 jours -> J9 Quinzaine B)
   '9': [
-    { time: '19:00', items: 'giant_cordy_asc | tevent_asc !pvp' },
-    { time: '22:00', items: 'giant_cordy_asc' }
+    { time: '19:00', items: 'tevent_asc' },
+    { time: '22:00', items: 'tevent_asc | giant_cordy_asc !gpvp' }
   ],
-  // Samedi Semaine 2
+  // Samedi Semaine 2 (Jour 24 du cycle 28 jours -> J10 Quinzaine B)
   '10': [
-    { time: '19:00', items: 'ramux' },
-    { time: '22:00', items: 'ramux | deluzhnoa_asc !pvp' }
+    { time: '19:00', items: 'ramux !gpvp' },
+    { time: '22:00', items: 'deluzhnoa_asc | ramux' }
   ],
-  // Dimanche Semaine 2
-  '11': [
-    { time: '19:30', items: 'tax !gpvp' },
-    { time: '20:00', items: 'siege !gpvp' }
-  ],
-  // Mardi Semaine 2
+  // Mardi Semaine 2 (Jour 27 du cycle 28 jours -> J13 Quinzaine B)
   '13': [
-    { time: '19:00', items: 'vegamor | queen_bellandir_asc !pvp' },
-    { time: '22:00', items: 'vegamor !pvp' }
+    { time: '19:00', items: 'deluzhnoa_asc | vegamor !gpvp' },
+    { time: '22:00', items: 'vegamor' }
   ],
-  // Mercredi Semaine 2
+  // Mercredi Semaine 2 (Jour 28 du cycle 28 jours -> J14 Quinzaine B)
   '14': [
     { time: '19:00', items: 'ramux' },
-    { time: '22:00', items: 'ramux | queen_bellandir_asc !pvp' }
+    { time: '22:00', items: 'queen_bellandir_asc | ramux !gpvp' }
   ]
 };
 
@@ -1389,7 +1356,7 @@ function parseScheduleItemToken(token) {
   };
 
   const isCoopFinal = isCoopExplicit || (!isGuildPvp && !isDomPvp && !isPvpExplicit && !isPeaceExplicit && (meta.isCoop || meta.defaultPvpKind === 'coop'));
-  const isPeaceFinal = isPeaceExplicit || (!isGuildPvp && !isDomPvp && !isPvpExplicit && !isCoopFinal && (meta.defaultPvpKind === 'peace' || (!meta.isPvP && !meta.archBoss)));
+  const isPeaceFinal = isPeaceExplicit || (!isGuildPvp && !isDomPvp && !isPvpExplicit && !isCoopFinal && !meta.isPvP);
   const isPvP = (isPvpExplicit || isGuildPvp || isDomPvp || (meta.isPvP && !isPeaceExplicit && !isCoopFinal)) && !isCoopFinal && !isPeaceFinal;
 
   let pvpLabel = 'Peace';

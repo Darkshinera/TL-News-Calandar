@@ -807,7 +807,8 @@ class TLBossCalendar {
   getQuinzaineDates(targetDateStr, quinzaineView) {
     const [y, m, d] = targetDateStr.split('-').map(Number);
     const targetDate = new Date(y, m - 1, d);
-    const [ay, am, ad] = TL_T4_ROTATION.anchorDate.split('-').map(Number);
+    const anchorStr = typeof TL_ARCHBOSS_ANCHOR_DATE !== 'undefined' ? TL_ARCHBOSS_ANCHOR_DATE : '2026-10-01';
+    const [ay, am, ad] = anchorStr.split('-').map(Number);
     const anchorDate = new Date(ay, am - 1, ad);
     
     const diffTime = targetDate.getTime() - anchorDate.getTime();
@@ -846,6 +847,7 @@ class TLBossCalendar {
     const renderWeekBlock = (weekDates, weekTitle, dayOffset) => {
       const daysHtml = weekDates.map((dateStr, idx) => {
         const dayNum = dayOffset + idx; // 1 à 14
+        const fieldDayNum = typeof getRotationDay === 'function' ? getRotationDay(dateStr) : dayNum;
         const [y, m, d] = dateStr.split('-').map(Number);
         const dt = new Date(y, m - 1, d);
         const dayName = dt.toLocaleDateString('fr-FR', { weekday: 'short' });
@@ -892,7 +894,7 @@ class TLBossCalendar {
               <span class="two-weeks-day-name">${dayFormatted}</span>
               <div style="display: flex; align-items: center; gap: 4px;">
                 ${isToday ? '<span class="two-weeks-today-badge">Auj.</span>' : ''}
-                <span class="two-weeks-day-cycle">J${dayNum}</span>
+                <span class="two-weeks-day-cycle">J${fieldDayNum}</span>
               </div>
             </div>
             <div class="two-weeks-day-body">
@@ -950,12 +952,13 @@ class TLBossCalendar {
     const cycleInfo = typeof getArchbossCycleInfo === 'function'
       ? getArchbossCycleInfo(this.selectedDate)
       : { rotationDay: getRotationDay(this.selectedDate), phaseName: 'Quinzaine A' };
+    const fieldDay = typeof getRotationDay === 'function' ? getRotationDay(this.selectedDate) : cycleInfo.rotationDay;
     const dayLabelEl = document.getElementById('cal-day-label');
     if (dayLabelEl) {
       const d = new Date(this.selectedDate);
       const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
       const formattedDate = d.toLocaleDateString('fr-FR', options);
-      dayLabelEl.innerHTML = `${formattedDate} <span class="rotation-badge">Cycle T4 • Jour ${cycleInfo.rotationDay}/14 (${cycleInfo.phaseName})</span>`;
+      dayLabelEl.innerHTML = `${formattedDate} <span class="rotation-badge">Cycle T4 • Jour ${fieldDay}/14 (${cycleInfo.phaseName})</span>`;
     }
   }
 
